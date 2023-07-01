@@ -24,6 +24,9 @@ module.exports = {
         midFnt: 500, // buttons, page title, subdiscription ,players names,labels,
         boldFnt: 600, //for landing/main page section headings,blogs
       },
+      borderRadius: {
+        regBtn: " 2.125rem",
+      },
     },
   },
   plugins: [],
