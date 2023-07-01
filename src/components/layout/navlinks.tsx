@@ -11,7 +11,7 @@ const Navlinks = () => {
   return (
     <>
       <nav
-        className={` md:items-center gap-10 ${
+        className={` md:items-center gap-10 absolute z-20 bg-navbg py-20 md:py-0 w-full md:w-auto  flex flex-col items-center  top-0 right-0 md:flex-row md:static md:bg-transparent ${
           toggle === false ? "hidden md:flex" : ""
         }`}
       >
@@ -30,13 +30,13 @@ const Navlinks = () => {
           onClick={() => {
             setToggle(false);
           }}
-          className="py-1.5 shadow-navDrop  px-7 border-2 border-clrLayoutGreen rounded-regBtn "
+          className="py-1.5  px-7 border-2 border-clrLayoutGreen rounded-regBtn "
         >
           Sign in
         </Link>
       </nav>
       <button
-        className="h-10 w-10 md:hidden "
+        className="h-10 w-10 md:hidden absolute z-30 right-0 me-2  "
         onClick={() => {
           setToggle((prev: boolean) => !prev);
         }}
