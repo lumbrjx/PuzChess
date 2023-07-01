@@ -27,6 +27,10 @@ module.exports = {
       borderRadius: {
         regBtn: " 2.125rem",
       },
+      boxShadow: {
+        btnDrop: "2px 2px 100px 10px rgba(76, 76, 76, 0.60)",
+        navDrop: "0px 0px 6px 2px rgba(117, 225, 41, 1)",
+      },
     },
   },
   plugins: [],

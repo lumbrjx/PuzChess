@@ -1,20 +1,27 @@
-import React from 'react'
 interface Btn {
-    label : string
-    style : "Green" | "Grey" |"Transparent" 
-    onClick? : ()=> void  
-
+  label: string;
+  readonly style: "Green" | "Grey" | "Transparent";
+  onClick?: () => void;
 }
 
-
-const Button= ({label , style, onClick} : Btn) => {
+const Button = ({ label, style, onClick }: Btn) => {
   return (
     <>
-    <button  className='text-mediumFnt font-midFnt bg-clrLayoutGreen py-4 px-24 rounded-regBtn' >
+      <button
+        className={`
+    ${
+      style === "Green"
+        ? "bg-clrLayoutGreen shadow-btnDrop"
+        : style === "Grey"
+        ? "bg-clrPrimaryBlack border-2 border-clrSecondaryGrey text-clrFont"
+        : "border-clrSecondaryGrey border-2"
+    }
+    text-mediumFnt font-midFnt  py-3 px-10 rounded-regBtn `}
+      >
         {label}
-    </button>
+      </button>
     </>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
