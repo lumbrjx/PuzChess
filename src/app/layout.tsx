@@ -1,6 +1,6 @@
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
-
+import AuthProvider from "./context/AuthProvider";
 import { Jost } from "next/font/google";
 // setting font family
 const inter = Jost({ subsets: ["latin"] });
@@ -18,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
