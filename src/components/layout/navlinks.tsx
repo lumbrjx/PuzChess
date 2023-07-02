@@ -19,30 +19,6 @@ const Navlinks = () => {
         }`}
       >
         <div className="py-1.5 flex gap-6 ">
-          {session && (
-            <div>
-              <Link
-                href="/play"
-                className="    "
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
-                Play
-              </Link>
-              <Link href="/api/auth/signout">Sign Out</Link>
-              <Link
-                href="/leaderboard"
-                className="    "
-                onClick={() => {
-                  setToggle(false);
-                }}
-              >
-                Leaderboard
-              </Link>
-            </div>
-          )}
-
           <Link
             href="/Blog"
             className="  "
@@ -62,16 +38,40 @@ const Navlinks = () => {
             Dashboard
           </Link>
         </div>
-        <Link
-          href="/auth/signin"
-          prefetch={true}
-          onClick={() => {
-            setToggle(false);
-          }}
-          className="py-1.5  px-7 border-2 border-clrLayoutGreen rounded-regBtn "
-        >
-          Sign in
-        </Link>
+        {session?.user ? (
+          <div className="flex gap-6">
+            <Link
+              href="/play"
+              className="    "
+              onClick={() => {
+                setToggle(false);
+              }}
+            >
+              Play
+            </Link>
+            <Link href="/api/auth/signout">Sign Out</Link>
+            <Link
+              href="/leaderboard"
+              className="    "
+              onClick={() => {
+                setToggle(false);
+              }}
+            >
+              Leaderboard
+            </Link>
+          </div>
+        ) : (
+          <Link
+            href="/auth/signin"
+            prefetch={true}
+            onClick={() => {
+              setToggle(false);
+            }}
+            className="py-1.5  px-7 border-2 border-clrLayoutGreen rounded-regBtn "
+          >
+            Sign in
+          </Link>
+        )}
       </nav>
       <button
         className="h-10 w-10 md:hidden absolute z-30 right-0 me-2  "
