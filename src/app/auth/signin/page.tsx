@@ -14,7 +14,7 @@ const SignIn = () => {
   const { data: session } = useSession();
   return (
     <div
-      className="bg-signbg w-full text-clrFont  md:ps-4 font-lightFnt 
+      className="bg-signbg w-full text-clrFont px-4  font-lightFnt 
      flex flex-col md:flex-row h-full 
      -8 gap-8 absolute z-50 top-0"
     >
