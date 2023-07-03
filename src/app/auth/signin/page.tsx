@@ -14,11 +14,11 @@ const SignIn = () => {
   const { data: session } = useSession();
   return (
     <div
-      className="bg-signbg w-full text-clrFont px-4  font-lightFnt 
+      className="bg-signbg w-full text-clrFont   font-lightFnt 
      flex flex-col md:flex-row h-full 
      -8 gap-8 absolute z-50 top-0"
     >
-      <div className=" w-full flex flex-col gap-6 items-center py-10 ">
+      <div className=" w-full flex flex-col gap-6 items-center px-4 py-10 ">
         <PageLogo />
         <h2 className="text-bigFnt">Sign in</h2>
         <div className="flex flex-col gap-3 text-smallFnt text-clrFont w-full max-w-[26.5rem] ">
@@ -59,7 +59,7 @@ const SignIn = () => {
             additional="w-full max-w-[26.5rem]  "
           />
         </div>
-        <div className="flex w-full max-w-[26.5rem] justify-between text-clrSecondaryGrey mb-12 ">
+        <div className="flex w-full max-w-[26.5rem] justify-between text-clrSecondaryGrey mb-6 ">
           <Link href={"/"}>back to home</Link>
           <Link href={"/auth/signup"}>create new account</Link>
         </div>
