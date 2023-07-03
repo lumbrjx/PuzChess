@@ -1,18 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client";
+import { usePathname } from "next/navigation";
 import Navlinks from "./navlinks";
+import PageLogo from "../ui/pageLogo";
 const Navbar = () => {
+  // const pathname = usePathname();
+  // const jj = pathname.includes("sign in");
+  // console.log(pathname + jj);
   return (
-    <header className="text-clrFont pt-4 text-smallFnt font-lightFnt px-4 md:px-16 w-full flex flex-row items-center justify-between">
-      <div className="flex flex-row items-center gap-3 ">
-        <Link href={"/"} className="text-bigFnt font-midFnt">
-          PuzChess
-        </Link>
-        <Image alt="logo" src="/Logo.png" width={35} height={35} priority />
-      </div>
+    // pathname.includes("sign in") === false ? (
+    <header className="text-clrFont pt-4 text-smallFnt font-lightFnt px-4 lg:px-16 w-full flex flex-row items-center gap-24 justify-between">
+      <PageLogo />
 
       <Navlinks />
     </header>
+    // ) : (
+    //   ""
+    // );
   );
 };
 

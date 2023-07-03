@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        signbg: "#191C20",
         navbg: "#2E2E2E",
         clrPrimaryBlack: "hsl(var(--color-primary-black) / <alpha-value>)",
         clrSecondaryGrey: "hsl(var(--clr-secondary-grey) / <alpha-value>)",
