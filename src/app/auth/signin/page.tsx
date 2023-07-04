@@ -64,7 +64,7 @@ const SignIn = () => {
             style="Grey"
             asset={true}
             asset_type="Google"
-            additional="rounded-formInput w-full border-none  text-black bg-clrFont"
+            additional="rounded-formInput w-full border-none  text-black bg-white"
           />
         </div>
         <div className="flex">
