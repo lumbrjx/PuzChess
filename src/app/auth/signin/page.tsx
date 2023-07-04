@@ -13,35 +13,41 @@ const SignIn = () => {
   const pass = useRef("");
   const { data: session } = useSession();
   return (
-    <div
-      className="bg-signbg w-full text-clrFont   font-lightFnt 
-     flex flex-col md:flex-row h-full 
-     -8 gap-8 absolute z-50 top-0"
-    >
-      <div className=" w-full flex flex-col gap-6 items-center px-4 py-10 ">
-        <PageLogo />
-        <h2 className="text-bigFnt">Sign in</h2>
-        <div className="flex flex-col gap-3 text-smallFnt text-clrFont w-full max-w-[26.5rem] ">
-          <input
-            className="py-3.5 px-6 bg-transparent  placeholder:text-clrSecondaryGrey rounded-regBtn border-2
-             border-clrSecondaryGrey focus:border-clrLayoutGreen 
-             focus:outline-none"
-            type="text"
-            placeholder="username"
-            onChange={(e) => (usernamee.current = e.target.value)}
-          />
-          <input
-            className="py-3.5 px-6 bg-transparent placeholder:text-clrSecondaryGrey  rounded-regBtn border-2
-             border-clrSecondaryGrey focus:border-clrLayoutGreen 
-             focus:outline-none"
-            type="text"
-            placeholder="password"
-            onChange={(e) => (pass.current = e.target.value)}
-          />
+    <div className="text-clrFont text-smallFnt flex justify-center pt-3 ">
+      <div className="bg-signbg p-10 flex flex-col w-full max-w-[27.8rem] gap-12 items-center rounded-form ">
+        <div className="w-full flex justify-center">
+          <h2 className="font-boldFnt text-bigFnt">Sign in</h2>
         </div>
-        <div className="flex flex-col gap-3  w-full max-w-[26.5rem] mt-6">
+        <div className="w-full max-w-[26.5rem] flex flex-col gap-4">
+          <div className="w-full max-w-[26.5rem] flex flex-col items-start gap-4">
+            <p>Email</p>
+            <input
+              className=" w-full max-w-[26.5rem] py-3 px-5 bg-transparent  placeholder:text-clrSecondaryGrey rounded-formInput border-2
+             border-clrSecondaryGrey focus:border-clrLayoutGreen 
+             focus:outline-none"
+              type="text"
+              placeholder="example: name@email.com or username"
+              onChange={(e) => (usernamee.current = e.target.value)}
+            />
+          </div>
+          <div className="w-full max-w-[26.5rem] flex flex-col items-start gap-4">
+            <div className="flex justify-between w-full">
+              <p>Password</p>
+              <p> forgot Password</p>
+            </div>
+            <input
+              className=" w-full max-w-[26.5rem] font-boldFnt pt-4 py-3 px-5 bg-transparent placeholder:text-clrSecondaryGrey  rounded-formInput border-2
+             border-clrSecondaryGrey focus:border-clrLayoutGreen 
+             focus:outline-none"
+              type="password"
+              placeholder="type your pa******"
+              onChange={(e) => (pass.current = e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="w-full max-w-[26.5rem] flex justify-between gap-4">
           <Button
-            additional="w-full max-w-[26.5rem]"
+            additional="text-black rounded-formInput w-full"
             label="Sign in"
             style="Green"
             onClick={() =>
@@ -54,17 +60,14 @@ const SignIn = () => {
             }
           />
           <Button
-            label=" continue with google"
+            label="google"
             style="Grey"
-            additional="w-full max-w-[26.5rem]  "
+            additional="rounded-formInput w-full"
           />
         </div>
-        <div className="flex w-full max-w-[26.5rem] justify-between text-clrSecondaryGrey mb-6 ">
-          <Link href={"/"}>back to home</Link>
-          <Link href={"/auth/signup"}>create new account</Link>
-        </div>
       </div>
-      <div className=" w-full absolute md:static md:opacity-100 opacity-50 -z-10 -top-[17rem]    ">
+
+      {/* <div className=" w-full absolute md:static md:opacity-100 opacity-50 -z-10 -top-[17rem]    ">
         <div className="w-full max-w-10 h-full  max-h-10 flex justify-end items-center mt-[16rem]">
           <Image
             alt="signinBg"
@@ -81,7 +84,7 @@ const SignIn = () => {
             priority={true}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
