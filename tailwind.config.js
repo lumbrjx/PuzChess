@@ -18,8 +18,9 @@ module.exports = {
       fontSize: {
         largeFnt: "3.4375rem", //for landing/main page section headings,
         bigFnt: "2.25rem", //for page title, subtitles, players names,blogs titles
-        mediumFnt: "1.71875rem", //labels, buttons, some discriptions
-        smallFnt: "1.5rem", // blog body, header/footer links, placeholders
+        mediumF: "1.71875rem", //labels, buttons, some discriptions
+        mediumFnt: "1.21875rem", //labels, buttons, some discriptions
+        smallFnt: "1.1rem", // blog body, header/footer links, placeholders
       },
       fontWeight: {
         lightFnt: 400, // header/footer links,placeholders
