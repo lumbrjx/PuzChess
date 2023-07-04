@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        signbg: "#191C20",
+        signbg: "#151515",
         navbg: "#2E2E2E",
         clrPrimaryBlack: "hsl(var(--color-primary-black) / <alpha-value>)",
         clrSecondaryGrey: "hsl(var(--clr-secondary-grey) / <alpha-value>)",
@@ -28,6 +28,8 @@ module.exports = {
       },
       borderRadius: {
         regBtn: " 2.125rem",
+        form: "1.875rem",
+        formInput: "0.9375rem",
       },
       boxShadow: {
         btnDrop: "2px 2px 100px 10px rgba(76, 76, 76, 0.60)",
