@@ -13,7 +13,7 @@ const SignIn = () => {
   const pass = useRef("");
   const { data: session } = useSession();
   return (
-    <div className="text-clrFont text-smallFnt py-[4rem] ">
+    <div className="text-clrFont text-smallFnt py-[4rem]">
       <div className="bg-signbg p-10 flex m-auto flex-col w-full max-w-[27.8rem] gap-8 items-center rounded-form ">
         <div className="w-full flex justify-center">
           <h2 className="font-boldFnt text-mediumF">Sign in</h2>
@@ -77,7 +77,7 @@ const SignIn = () => {
         </div>
       </div>
 
-      {/* <div className=" w-full absolute md:static md:opacity-100 opacity-50 -z-10 -top-[17rem]    ">
+      <div className=" w-full absolute   opacity-50 -z-10 lg:-top-[1rem] -top-[10.5rem]    ">
         <div className="w-full max-w-10 h-full  max-h-10 flex justify-end items-center mt-[16rem]">
           <Image
             alt="signinBg"
@@ -94,7 +94,7 @@ const SignIn = () => {
             priority={true}
           />
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
