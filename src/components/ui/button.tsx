@@ -1,11 +1,22 @@
+import Image from "next/image";
+
 interface Btn {
   label: string;
   readonly style: "Green" | "Grey" | "Transparent";
   additional?: string;
   onClick?: () => any;
+  asset?: boolean;
+  asset_type?: "Google";
 }
 
-const Button = ({ label, style, onClick, additional }: Btn) => {
+const Button = ({
+  label,
+  style,
+  onClick,
+  additional,
+  asset,
+  asset_type,
+}: Btn) => {
   return (
     <>
       <button
@@ -15,13 +26,25 @@ const Button = ({ label, style, onClick, additional }: Btn) => {
       style === "Green"
         ? "bg-clrLayoutGreen shadow-btnDrop"
         : style === "Grey"
-        ? "bg-clrPrimaryBlack border-2 border-clrSecondaryGrey text-clrFont "
+        ? "bg-clrPrimaryBlack border-2 border-clrSecondaryGrey   "
         : style === "Transparent"
         ? "border-clrSecondaryGrey border-2"
         : ""
     }
-    text-mediumFnt font-midFnt  py-3 px-10 rounded-regBtn ${additional}`}
+    text-mediumFnt font-midFnt  py-1.5 px-5 ${
+      asset && "flex items-center gap-2 justify-center flex-wrap"
+    } ${additional}`}
       >
+        {asset && (
+          <Image
+            alt={`${asset_type}`}
+            src={`/${asset_type}.svg`}
+            width={20}
+            height={20}
+            quality={100}
+            priority
+          />
+        )}
         {label}
       </button>
     </>
