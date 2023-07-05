@@ -7,7 +7,7 @@ const PageLogo = () => {
       <Link href={"/"} className="text-bigFnt font-midFnt">
         PuzChess
       </Link>
-      <Image alt="logo" src="/Logo.png" width={35} height={35} priority />
+      <Image alt="logo" src="/Logo.svg" width={35} height={35} priority />
     </div>
   );
 };

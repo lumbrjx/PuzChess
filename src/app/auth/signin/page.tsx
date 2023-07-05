@@ -84,7 +84,7 @@ const SignIn = () => {
         <div className="w-full max-w-10 h-full  max-h-10 flex justify-end items-center mt-[16rem]">
           <Image
             alt="signinBg"
-            src={"/inBg.png"}
+            src={"/inBg.svg"}
             // sizes="10vw"
             width={400}
             height={400}
