@@ -10,7 +10,7 @@ const Footer = () => {
             <PageLogo />
           </div>
           <div className=" flex flex-col gap-20  text-smallFnt font-midFnt w-full  ">
-            <div className="md:flex-row flex flex-col md:justify-between pe-36 ">
+            <div className="md:flex-row gap-2 md:gap-0 flex flex-col md:justify-between pe-36 ">
               <div className="flex flex-col gap-2 ">
                 <p>Creator</p>
                 <p>Facebook</p>
