@@ -1,6 +1,6 @@
-<svg width="488" height="312" viewBox="0 0 488 312" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- <svg width="482" height="301" viewBox="0 0 488 312" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_135_27)">
-<rect x="106" y="110.216" width="266.446" height="87.6164" rx="20" transform="rotate(-0.792234 106 110.216)" fill="#75E129"/>
+<rect x="106" y="110.216" width="266.446" height="87.6164" rx="20"  fill="#75E129"/>
 </g>
 <defs>
 <filter id="filter0_d_135_27" x="0.273438" y="0.806152" width="487.086" height="310.743" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
@@ -15,4 +15,7 @@
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_135_27" result="shape"/>
 </filter>
 </defs>
+</svg> -->
+<svg width="482" height="301" viewBox="0 0 274 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect y="4.30542" width="272.94" height="77.4551" rx="20"  fill="#75E129"/>
 </svg>

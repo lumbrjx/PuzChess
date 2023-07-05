@@ -15,3 +15,59 @@
 body {
   background-color: hsl(var(--clr-primary-black));
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: hsl(var(--clr-primary-black));
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #909090;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.bg1 {
+  background-image: url("../../public/RectangleFull.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg2 {
+  background-image: url("../../public/Rectanglehalf.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg3 {
+  background-image: url("../../public/RectangleNone.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg4 {
+  background-image: url("../../public/squareFull.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg5 {
+  background-image: url("../../public/squareHalf.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bg6 {
+  background-image: url("../../public/squareNone.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
