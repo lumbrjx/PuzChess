@@ -7,7 +7,7 @@ export type formSchema = {
 };
 export const form: ZodType<formSchema> = z
   .object({
-    username: z.string().min(5).max(10).nonempty(),
+    username: z.string().min(5).max(10).nonempty().toLowerCase(),
     email: z.string().email().nonempty(),
     password: z.string().min(6).max(20).nonempty(),
     confirmPassword: z.string().min(6).max(20).nonempty(),

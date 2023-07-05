@@ -37,7 +37,7 @@ const SignUp = () => {
              border-clrSecondaryGrey  
              focus:outline-none"`}
               type="text"
-              placeholder="example: hekaruclone"
+              placeholder="example: imhekaru"
               // onChange={(e) => (usernamee.current = e.target.value)}
               {...register("username")}
             />
