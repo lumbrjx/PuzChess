@@ -16,8 +16,8 @@ module.exports = {
         clrLayoutGreen: "hsl(var(--clr-layout-green) / <alpha-value>)",
       },
       fontSize: {
-        largeFnt: "3.4375rem", //for landing/main page section headings,
-        bigFnt: "2.25rem", //for page title, subtitles, players names,blogs titles
+        largeFnt: "2.4375rem", //for landing/main page section headings,
+        bigFnt: "2rem", //for page title, subtitles, players names,blogs titles
         mediumF: "1.71875rem", //labels, buttons, some discriptions
         mediumFnt: "1.21875rem", //labels, buttons, some discriptions
         smallFnt: "1.1rem", // blog body, header/footer links, placeholders
