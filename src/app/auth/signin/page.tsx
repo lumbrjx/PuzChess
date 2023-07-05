@@ -65,6 +65,9 @@ const SignIn = () => {
             asset={true}
             asset_type="Google"
             additional="rounded-formInput w-full border-none  text-black bg-white"
+            onClick={() =>
+              signIn("google", { redirect: true, callbackUrl: "/" })
+            }
           />
         </div>
         <div className="flex">
