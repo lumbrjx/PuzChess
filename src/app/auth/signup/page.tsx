@@ -127,11 +127,11 @@ const SignUp = () => {
         </div>
       </form>
 
-      <div className=" w-full absolute   opacity-50 -z-10 lg:-top-[1rem] -top-[10.5rem]    ">
+      <div className="  absolute   opacity-50 -z-10 lg:-top-[1rem] -top-[10.5rem] left-0 ">
         <div className="w-full max-w-10 h-full  max-h-10 flex justify-end items-center mt-[16rem]">
           <Image
             alt="signinBg"
-            src={"/inBg.png"}
+            src={"/upBg.png"}
             // sizes="10vw"
             width={400}
             height={400}
