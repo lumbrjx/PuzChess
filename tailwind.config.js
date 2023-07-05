@@ -16,7 +16,7 @@ module.exports = {
         clrLayoutGreen: "hsl(var(--clr-layout-green) / <alpha-value>)",
       },
       fontSize: {
-        largeFnt: "2.4375rem", //for landing/main page section headings,
+        largeFnt: "2.275rem", //for landing/main page section headings,
         bigFnt: "2rem", //for page title, subtitles, players names,blogs titles
         mediumF: "1.71875rem", //labels, buttons, some discriptions
         mediumFnt: "1.21875rem", //labels, buttons, some discriptions
@@ -34,6 +34,7 @@ module.exports = {
       },
       boxShadow: {
         btnDrop: "2px 2px 100px 10px rgba(76, 76, 76, 0.60)",
+        cardDrop: "4px 4px 100px 10px rgba(0, 0, 0, 0.25)",
         navDrop: "0px 0px 6px 2px rgba(117, 225, 41, 1)",
       },
     },

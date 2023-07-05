@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PageLogo from "../ui/pageLogo";
 
 const Footer = () => {
@@ -12,13 +13,15 @@ const Footer = () => {
           <div className=" flex flex-col gap-20  text-smallFnt font-midFnt w-full  ">
             <div className="md:flex-row gap-2 md:gap-0 flex flex-col md:justify-between pe-36 ">
               <div className="flex flex-col gap-2 ">
-                <p>Creator</p>
-                <p>Facebook</p>
-                <p>Instagram</p>
+                <p>Creator -not available try these instead-</p>
+                <a href="">Facebook</a>
+                <a href="https://instagram.com/el_padremf?igshid=ZGUzMzM3NWJiOQ==">
+                  Instagram
+                </a>
               </div>
               <div className="flex flex-col gap-2">
-                <p>About us</p>
-                <p>FAQ</p>
+                <Link href={"/AboutUs"}>About us</Link>
+                <Link href={"/FAQ"}>FAQ</Link>
               </div>
             </div>
             <div className="font-midFnt text-smallFnt ">
