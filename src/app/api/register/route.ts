@@ -2,7 +2,6 @@ import { createUser } from "@/server/db/data/users/user";
 import { NextResponse } from "next/server";
 import { form } from "@/schemas/forms";
 const bcrypt = require("bcrypt");
-
 export async function POST(request: Request, response: Response) {
   const { username, password, email, confirmPassword } = await request.json();
   //checking if the data is proper
@@ -12,7 +11,6 @@ export async function POST(request: Request, response: Response) {
       { status: 400 }
     );
   }
-
   try {
     //checking if the data is valid with zod form
     const parsedData = await form.parse({
@@ -36,6 +34,6 @@ export async function POST(request: Request, response: Response) {
       issues?: Array<{ message: string; code: string }>;
     };
     const errorMessage = castedError.issues?.[0]?.message || error;
-    return NextResponse.json({ message: errorMessage }, { status: 400 });
+    return NextResponse.json({ message: error }, { status: 400 });
   }
 }

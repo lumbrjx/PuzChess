@@ -1,7 +1,7 @@
 import prisma from "@/server/db/seed";
 import { Prisma } from "@prisma/client";
 export const createUser = async (
-  username: string,
+  name: string,
   password: string,
   email: string,
   chessElo?: number,
@@ -11,7 +11,7 @@ export const createUser = async (
   try {
     const user = await prisma.user.create({
       data: <userType>{
-        username,
+        name,
         password,
         email,
         chessElo,
@@ -23,9 +23,18 @@ export const createUser = async (
   } catch (e) {
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === "P2002") {
-        throw "There is a unique constraint violation, a new user cannot be created with this email";
+        throw "There is a unique constraint violation, a new user cannot be created with this email or username";
       }
     }
     throw e;
   }
+};
+export const getUser = async (name: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      name: name,
+    },
+  });
+
+  return user;
 };
