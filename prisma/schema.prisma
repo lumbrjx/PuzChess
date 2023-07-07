@@ -51,16 +51,17 @@ enum budges {
 }
 
 model User {
-  id       String    @id @default(cuid())
-  role     roles     @default(BASIC)
-  username String?   @unique
-  password String
-  chessElo Int?
-  badge    budges    @default(ROCKIE)
-  email    String?   @unique
-  image    String?
-  accounts Account[]
-  sessions Session[]
+  id            String    @id @default(cuid())
+  role          roles     @default(BASIC)
+  name          String?   @unique
+  password      String?
+  chessElo      Int?
+  badge         budges    @default(ROCKIE)
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
 }
 
 model VerificationToken {
