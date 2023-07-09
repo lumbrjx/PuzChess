@@ -34,6 +34,6 @@ export async function POST(request: Request, response: Response) {
       issues?: Array<{ message: string; code: string }>;
     };
     const errorMessage = castedError.issues?.[0]?.message || error;
-    return NextResponse.json({ message: error }, { status: 400 });
+    return NextResponse.json({ message: errorMessage }, { status: 400 });
   }
 }
