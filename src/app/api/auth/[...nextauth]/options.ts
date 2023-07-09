@@ -58,9 +58,10 @@ export const options: NextAuthOptions = {
         );
         console.log(ismatch);
         if (ismatch) {
+          console.log(user.name);
           return {
             id: user.id,
-            username: user.name,
+            name: user.name,
             email: user.email,
             chessElo: user.chessElo,
             badge: user.badge,

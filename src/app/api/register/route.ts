@@ -22,7 +22,7 @@ export async function POST(request: Request, response: Response) {
     //hashing the password and creating the data in the database
     const hash = await bcrypt.hash(parsedData.password, 10);
     await createUser(
-      parsedData.username as string,
+      parsedData.name as string,
       hash as string,
       parsedData.email as string
     );
