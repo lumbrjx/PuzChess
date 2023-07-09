@@ -60,7 +60,7 @@ export const options: NextAuthOptions = {
         if (ismatch) {
           return {
             id: user.id,
-            username: user.name,
+            name: user?.name,
             email: user.email,
             chessElo: user.chessElo,
             badge: user.badge,
