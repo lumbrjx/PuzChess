@@ -3,8 +3,10 @@ import prisma from "@/server/db/seed";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { NextAuthOptions } from "next-auth";
 import { Adapter } from "next-auth/adapters";
+import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { ApiError } from "next/dist/server/api-utils";
 const bcrypt = require("bcrypt");
 
 export const options: NextAuthOptions = {
@@ -13,16 +15,16 @@ export const options: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async session({ session, token, user }) {
-      console.log("im session", session);
-      session.user = token;
+    jwt: async ({ token, account, user }) => {
+      user && (token.user = user);
 
-      return session;
+      return token;
     },
-    async jwt({ token, user }) {
-      console.log("im token", token);
-
-      return { ...token, ...user };
+    session: async ({ session, token }) => {
+      if (token && token.user) {
+        session.user = token.user as any;
+      }
+      return session;
     },
   },
   adapter: PrismaAdapter(prisma) as Adapter,
@@ -47,8 +49,8 @@ export const options: NextAuthOptions = {
       async authorize(credentials) {
         const user = await getUser(credentials?.username as string);
         if (user === null) {
-          console.log("no user");
-          return null;
+          //no user
+          throw Error("user or password not valid");
         }
         const ismatch = await bcrypt.compare(
           credentials?.password,
@@ -56,23 +58,67 @@ export const options: NextAuthOptions = {
         );
         console.log(ismatch);
         if (ismatch) {
-          console.log("logged in");
-          return user;
+          return {
+            id: user.id,
+            username: user.name,
+            email: user.email,
+            chessElo: user.chessElo,
+            badge: user.badge,
+            image: user.image,
+          };
         } else {
-          console.log("invalid pass");
-          return null;
+          // invalid pass
+          throw Error("user or password not valid");
         }
-        // const user = { id: "42", name: "dave", pass: "auth" };
-        // if (
-        //   credentials?.username === user.name &&
-        //   credentials?.password === user.pass
-        // ) {
-        //   console.log(user);
-        //   return user;
-        // } else {
-        //   return null;
-        // }
       },
     }),
   ],
 };
+
+// ```ts
+
+// export const AUTH_OPTIONS: NextAuthOptions = {
+//   // Configure one or more authentication providers
+//   session: { strategy: "jwt" },
+//   jwt: {
+//     secret: process.env.NEXTAUTH_SECRET,
+//     maxAge: SESSION_TTL,
+//   },
+//   providers: [
+//     // ...add more providers here
+
+//     // INFO: The only special one is this guy, where you handle validating
+//     //        and returning the user yourself
+//     CredentialsProvider({
+//       type: "credentials",
+//       credentials: {},
+//       async authorize(credentials, req) {
+//         // validate user
+//         // login the user
+//         // if you want to persist sessions in the backend, then here's the time to do it
+//         return {
+//           // user info which you want to store in the session
+//         };
+//       },
+//     }),
+//   ],
+//   callbacks: {
+//     jwt: async ({ token, account, user }) => {
+//       // here you set the user if it is present
+//       // this user variable comes only when a signin is triggered by some provider
+//       // this runs before the `session` function below. I put it above for that sake as well
+//       return token;
+//     },
+//     session: async ({ session, token }) => {
+//       // here you can modify the session, set anything to it
+//       // in our usual case, we set the user to the session
+//       // after this the session object is sent to the `jwt.encode` and then sent to the client
+//       return session;
+//     },
+//   },
+//   pages: {
+//     signIn: "/auth/signin",
+//     // error: '/auth/error', // Error code passed in query string as ?error=
+//     // signOut: '/auth/signout',
+//   },
+// };```
