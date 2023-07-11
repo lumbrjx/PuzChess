@@ -29,10 +29,10 @@ export const createUser = async (
     throw e;
   }
 };
-export const getAuthUser = async (name: string) => {
+export const getAuthUser = async (name: any) => {
   const authUser = await prisma.user.findUnique({
     where: {
-      name: name,
+      name: name ,
     },
     select: {
       name: true,
