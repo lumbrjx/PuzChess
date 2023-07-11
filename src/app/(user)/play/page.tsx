@@ -1,14 +1,19 @@
-"use client";
-import { useSession } from "next-auth/react";
+import { options } from "../../api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth/next";
+
 import { redirect } from "next/navigation";
 
-const Play = () => {
-  // const { data: session } = useSession();
-  // if (session) {
-  return <div>play</div>;
-  // } else {
-  // redirect("auth/signin?callbackUrl=/play");
-  // }
-};
+export default async function Page() {
+  const session = await getServerSession(options);
 
-export default Play;
+  if (!session) {
+    redirect("/auth/signin?callbackUrl=/dashboard");
+  }
+
+  return (
+    <section className="flex flex-col gap-6">
+      <p>Page</p>
+      {session?.user?.name}
+    </section>
+  );
+}
