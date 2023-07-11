@@ -1,32 +1,31 @@
-import { getUser } from "@/server/db/data/users/user";
+// import { getUser } from "@/server/db/data/users/user";
 import prisma from "@/server/db/seed";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import type { NextAuthOptions } from "next-auth";
 import { Adapter } from "next-auth/adapters";
-import { JWT } from "next-auth/jwt";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import { ApiError } from "next/dist/server/api-utils";
-const bcrypt = require("bcrypt");
+// import { JWT } from "next-auth/jwt";
+// import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
+// import { ApiError } from "next/dist/server/api-utils";
+// const bcrypt = require("bcrypt");
 
 export const options: NextAuthOptions = {
-  secret: process.env.JWT_SECRET,
-  session: {
-    strategy: "jwt",
-  },
-  callbacks: {
-    jwt: async ({ token, account, user }) => {
-      user && (token.user = user);
+  // secret: process.env.JWT_SECRET,
+  // session: {
+  //   strategy: "database",
+  // },
+  // callbacks: {
+  //   // jwt: async ({ token, account, user }) => {
+  //   //   user && (token.user = user);
 
-      return token;
-    },
-    session: async ({ session, token }) => {
-      if (token && token.user) {
-        session.user = token.user as any;
-      }
-      return session;
-    },
-  },
+  //   //   return token;
+  //   // },
+  //   session: async ({ session, user }) => {
+  //     session.user = await user;
+  //     console.log("modified session", session);
+  //     return session;
+  //   },
+  // },
   adapter: PrismaAdapter(prisma) as Adapter,
   pages: {
     signIn: "/auth/signin",
@@ -36,42 +35,42 @@ export const options: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        username: {
-          type: "text",
-        },
-        password: {
-          type: "password",
-        },
-      },
-      async authorize(credentials) {
-        const user = await getUser(credentials?.username as string);
-        if (user === null) {
-          //no user
-          throw Error("user or password not valid");
-        }
-        const ismatch = await bcrypt.compare(
-          credentials?.password,
-          user?.password
-        );
-        console.log(ismatch);
-        if (ismatch) {
-          return {
-            id: user.id,
-            name: user.username ,
-            email: user.email,
-            chessElo: user.chessElo,
-            badge: user.badge,
-            image: user.image,
-          };
-        } else {
-          // invalid pass
-          throw Error("user or password not valid");
-        }
-      },
-    }),
+    // CredentialsProvider({
+    //   name: "Credentials",
+    //   credentials: {
+    //     username: {
+    //       type: "text",
+    //     },
+    //     password: {
+    //       type: "password",
+    //     },
+    //   },
+    //   async authorize(credentials) {
+    //     const user = await getUser(credentials?.username as string);
+    //     if (user === null) {
+    //       //no user
+    //       throw Error("user or password not valid");
+    //     }
+    //     const ismatch = await bcrypt.compare(
+    //       credentials?.password,
+    //       user?.password
+    //     );
+    //     console.log(ismatch);
+    //     if (ismatch) {
+    //       return {
+    //         id: user.id,
+    //         name: user.name,
+    //         email: user.email,
+    //         chessElo: user.chessElo,
+    //         badge: user.badge,
+    //         image: user.image,
+    //       };
+    //     } else {
+    //       // invalid pass
+    //       throw Error("user or password not valid");
+    //     }
+    //   },
+    // }),
   ],
 };
 
