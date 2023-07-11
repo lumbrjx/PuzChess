@@ -53,7 +53,7 @@ enum budges {
 model User {
   id            String    @id @default(cuid())
   role          roles     @default(BASIC)
-  name          String?   @unique
+  name          String   @unique
   password      String?
   chessElo      Int?
   badge         budges    @default(ROCKIE)
