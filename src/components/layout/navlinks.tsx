@@ -9,6 +9,7 @@ import DashboardLink from "./dashboardLink";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import QueryProvider from "@/app/context/QueryProvider";
 import { useFetchUser } from "@/lib/hooks/query/fetchUser";
+import Image from "next/image";
 // interface states {
 //   setToggleLogin: Dispatch<SetStateAction<boolean>>;
 // }
@@ -90,8 +91,40 @@ const Navlinks = () => {
             >
               Leaderboard
             </Link>
-            <Link href="/profile">profile</Link>
-            <Link href="/api/auth/signout">Sign Out</Link>
+            <div className="dropdown dropdown-end ">
+              <label
+                tabIndex={0}
+                className="btn p-0 -py-2 min-h-min rounded-regBtn h-auto border-2  border-white"
+              >
+                {user?.image && (
+                  <Image
+                    alt={"user-profile"}
+                    src={`${user?.image}`}
+                    width={35}
+                    height={35}
+                    quality={100}
+                    priority
+                    style={{
+                      backgroundSize: "contain",
+                      borderRadius: "80px",
+                    }}
+                  />
+                )}
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box "
+              >
+                <li>
+                  <Link href="/profile" className=" ">
+                    My profile
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/api/auth/signout">Sign Out</Link>
+                </li>
+              </ul>
+            </div>
           </>
         )}
       </nav>
