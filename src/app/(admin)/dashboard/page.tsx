@@ -11,7 +11,7 @@ export default async function Dashboard() {
     redirect("/auth/signin?callbackUrl=/dashboard");
   }
   if (session) {
-    const authUser = await getAuthUser(session.user?.name as string);
+    const authUser = await getAuthUser(session.user?.email as string);
     if (authUser?.role !== "ADMIN") {
       redirect("/denied");
     }

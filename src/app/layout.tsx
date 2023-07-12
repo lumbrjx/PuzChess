@@ -3,6 +3,7 @@ import Navbar from "@/components/layout/navbar";
 import AuthProvider from "./context/AuthProvider";
 import { Jost } from "next/font/google";
 import Footer from "@/components/layout/footer";
+import QueryProvider from "./context/QueryProvider";
 // setting font family
 const inter = Jost({ subsets: ["latin"] });
 // metadata
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );

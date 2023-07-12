@@ -17,10 +17,10 @@ export default async function Home() {
             height={350}
           />{" "}
         </div>
-        <div className="px-3.5 lg:px-[14rem] mb-16">
+        <div className="px-3.5 lg:px-[20rem] mb-16">
           <h1>
             Solve chess <span className="text-clrLayoutGreen">puzz</span>les and
-            compete with numerous players around the world !
+            compete with numerous players around the world!
           </h1>
         </div>
         <Link
@@ -36,9 +36,9 @@ export default async function Home() {
           <div className="max-w-[10.65288rem]  sm:max-w-[16.65288rem] h-[10.476rem]  w-full absolute  z-20 top-[1.2rem] right-[2.5rem] bg2 "></div>
           <div className="max-w-[10.65288rem]   sm:max-w-[16.65288rem] w-full  h-[10.476rem] absolute  z-10 -bottom-[2.4rem] right-[5.4rem] bg3  "></div>
         </div>
-        <div className="px-3.5 lg:px-[14rem] mb-16">
+        <div className="px-3.5 lg:px-[20rem] mb-16">
           <h2>
-            Solve unlimited amount of puzzles depending on ur skill level{" "}
+            Solve unlimited amount of puzzles depending on your skill level{" "}
           </h2>
         </div>
       </div>
@@ -48,7 +48,7 @@ export default async function Home() {
           <div className="max-w-[6.65288rem]  sm:max-w-[16.65288rem] h-[10.476rem]  w-full absolute  z-20 top-[1.5rem] sm:right-[1.8rem] bg5 "></div>
           <div className="max-w-[6.65288rem]   sm:max-w-[16.65288rem] w-full  h-[10.476rem] absolute  z-10 top-[0rem] right-[1.8rem] sm:right-[0rem] bg6  "></div>
         </div>
-        <div className="px-3.5 lg:px-[14rem] mb-16">
+        <div className="px-3.5 lg:px-[22rem] mb-16">
           <h2>Stay updated with latest articles and blogs about chess </h2>
         </div>
         <Link
@@ -69,7 +69,7 @@ export default async function Home() {
             height={350}
           />{" "}
         </div>
-        <div className="px-3.5 lg:px-[14rem] mb-16">
+        <div className="px-3.5 lg:px-[20rem] mb-16">
           <h2>
             Find your way to the top of the leaderboard and earn various budges
             !
@@ -87,7 +87,7 @@ export default async function Home() {
             height={350}
           />{" "}
         </div>
-        <div className="px-3.5 lg:px-[14rem] mb-16">
+        <div className="px-3.5 lg:px-[20rem] mb-16">
           <h2>What are you waiting for ? join PuzChess now </h2>
         </div>
         <Link
