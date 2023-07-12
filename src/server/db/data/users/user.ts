@@ -29,14 +29,13 @@ export const createUser = async (
     throw e;
   }
 };
-export const getAuthUser = async (name: any) => {
-  const authUser = await prisma.user.findUnique({
+export const getAuthUser = async (email: string) => {
+  const authUser = await prisma.user.findFirst({
     where: {
-      name: name ,
+      email: email,
     },
     select: {
       name: true,
-
       role: true,
     },
   });

@@ -5,11 +5,27 @@ import { useSession } from "next-auth/react";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
+import DashboardLink from "./dashboardLink";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import QueryProvider from "@/app/context/QueryProvider";
+import { useFetchUser } from "@/lib/hooks/query/fetchUser";
 // interface states {
 //   setToggleLogin: Dispatch<SetStateAction<boolean>>;
 // }
 const Navlinks = () => {
+  // const { data: user } = useQuery({
+  //   queryFn: async () => {
+  //     const user = await fetch(`/api/user?email=${session?.user?.email}`).then(
+  //       (res) => res.json()
+  //     );
+  //     return user;
+  //   },
+  //   queryKey: ["user"],
+  // });
+
   const { data: session } = useSession();
+  const user = useFetchUser(session?.user?.email);
+  console.log(user);
   const [toggle, setToggle] = useState<boolean>(false);
   return (
     <>
@@ -20,15 +36,17 @@ const Navlinks = () => {
           md:gap-10 top-0 right-0 md:flex-row md:static
            md:bg-transparent ${toggle === false ? "hidden md:flex" : ""}`}
       >
-        <Link
-          href="/dashboard"
-          className="    "
-          onClick={() => {
-            setToggle(false);
-          }}
-        >
-          Dashboard
-        </Link>
+        {user?.role === "ADMIN" && (
+          <Link
+            href="/dashboard"
+            className=" "
+            onClick={() => {
+              setToggle(false);
+            }}
+          >
+            Dashboard
+          </Link>
+        )}
         {session?.user && (
           <Link
             href="/play"
