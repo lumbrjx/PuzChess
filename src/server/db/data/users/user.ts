@@ -1,5 +1,6 @@
 import prisma from "@/server/db/seed";
 import { Prisma } from "@prisma/client";
+
 // export const createUser = async (
 //   name: string,
 //   password: string,
@@ -29,6 +30,9 @@ import { Prisma } from "@prisma/client";
 //     throw e;
 //   }
 // };
+
+
+
 export const getAuthUser = async (email: string) => {
   const authUser = await prisma.user.findFirst({
     where: {
