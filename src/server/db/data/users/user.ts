@@ -42,3 +42,19 @@ export const getAuthUser = async (email: string) => {
 
   return authUser;
 };
+export const getUser = async (email: string) => {
+  const theUser = await prisma.user.findFirst({
+    where: {
+      email: email,
+    },
+    select: {
+      name: true,
+      badge: true,
+      chessElo: true,
+      email: true,
+      image: true,
+    },
+  });
+
+  return theUser;
+};
