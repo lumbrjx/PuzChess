@@ -10,12 +10,12 @@ export const createUser = async (
 ) => {
   try {
     const user = await prisma.user.create({
-      data <any>{
+      data <userType>{
         name,
         password,
         email,
         chessElo,
-        role,
+     
         badge,
       },
     });
