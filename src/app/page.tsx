@@ -5,7 +5,7 @@ import "./globals.css";
 
 export default async function Home() {
   return (
-    <div className="text-largeFnt text-center font-boldFnt text-clrFont pt-10 flex flex-col items-center w-full ">
+    <div className="text-[2.3rem] md:text-largeFnt text-center font-boldFnt text-clrFont pt-10 flex flex-col items-center w-full ">
       <div className="flex flex-col items-center mb-64 ">
         <div>
           <Image
@@ -18,7 +18,7 @@ export default async function Home() {
           />{" "}
         </div>
         <div className="px-3.5 lg:px-[20rem] mb-16">
-          <h1>
+          <h1 className="">
             Solve chess <span className="text-clrLayoutGreen">puzz</span>les and
             compete with numerous players around the world!
           </h1>
@@ -71,8 +71,7 @@ export default async function Home() {
         </div>
         <div className="px-3.5 lg:px-[20rem] mb-16">
           <h2>
-            Find your way to the top of the leaderboard and earn various budges
-            !
+            Find your way to the top of the leaderboard and earn various budges!
           </h2>
         </div>
       </div>
@@ -88,7 +87,7 @@ export default async function Home() {
           />{" "}
         </div>
         <div className="px-3.5 lg:px-[20rem] mb-16">
-          <h2>What are you waiting for ? join PuzChess now </h2>
+          <h2>What are you waiting for? Join PuzChess now </h2>
         </div>
         <Link
           href={"/auth/signin"}

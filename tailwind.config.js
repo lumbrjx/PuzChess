@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         signbg: "#151515",
+        dropBg: "#1D2A35",
         navbg: "#2E2E2E",
         clrPrimaryBlack: "hsl(var(--color-primary-black) / <alpha-value>)",
         clrSecondaryGrey: "hsl(var(--clr-secondary-grey) / <alpha-value>)",
