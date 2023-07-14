@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import UserImg from "../ui/userImg";
 import Button from "../ui/button";
+import DeleteModal from "./deleteModal";
 // enum budges {
 //   "ROCKIE",
 //   "SILVER",
@@ -19,7 +20,11 @@ import Button from "../ui/button";
 // };
 const ProfileCard = ({ user }: any) => {
   return (
-    <div className="text-mediumFnt bg-clrPrimaryBlack rounded-2xl w-full border border-clrSecondaryGrey max-w-[36rem] shadow-cardDrop  py-12 px-4 sm:p-12">
+    <div
+      className="text-mediumFnt bg-clrPrimaryBlack
+     rounded-2xl w-full
+     max-w-[36rem] shadow-cardDrop  py-12 px-4 sm:p-12"
+    >
       <div className="flex justify-between w-full mb-10">
         <div className="flex gap-4">
           <UserImg src={user?.image} />
@@ -33,17 +38,16 @@ const ProfileCard = ({ user }: any) => {
         <p>Rank : later</p>
         <p>played games : later</p>
       </div>
-      <div className="flex sm:justify-between flex-wrap justify-center gap-2">
+      <div
+        className="flex justify-between w-full 
+      flex-wrap  gap-2"
+      >
         <Button
           label="Edit profile"
           style="Green"
           additional="rounded-regBtn px-10 text-black"
         />
-        <Button
-          label="Delete account"
-          style="Transparent"
-          additional="rounded-regBtn"
-        />
+        <DeleteModal />
       </div>
     </div>
   );
