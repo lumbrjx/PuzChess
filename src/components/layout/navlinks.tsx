@@ -4,7 +4,7 @@ import { HiMenu } from "react-icons/hi";
 import { useSession } from "next-auth/react";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFetchUser } from "@/lib/hooks/query/fetchUser";
 import UserImg from "../ui/userImg";
 import "../../app/globals.css";
@@ -14,9 +14,11 @@ const Navlinks = () => {
   const user = useFetchUser(session?.user?.email);
 
   const [toggle, setToggle] = useState<boolean>(false);
-  toggle
-    ? (document.body.style.overflow = "hidden")
-    : (document.body.style.overflow = "auto");
+  useEffect(() => {
+    toggle
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [toggle]);
   // const [open, setOpen] = useState(true);
   // const ref = useRef();
   return (
