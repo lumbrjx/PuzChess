@@ -4,20 +4,26 @@ import { HiMenu } from "react-icons/hi";
 import { useSession } from "next-auth/react";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFetchUser } from "@/lib/hooks/query/fetchUser";
 import UserImg from "../ui/userImg";
+import "../../app/globals.css";
 
 const Navlinks = () => {
   const { data: session } = useSession();
   const user = useFetchUser(session?.user?.email);
-  console.log(user);
+
   const [toggle, setToggle] = useState<boolean>(false);
+  toggle
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
+  // const [open, setOpen] = useState(true);
+  // const ref = useRef();
   return (
     <>
       <nav
         className={` md:items-center gap-6 absolute flex-wrap
-         z-20 w-full bg-base-100 py-20 pb-24 rounded-b-2xl  md:py-0  md:w-auto 
+         z-20 w-full bg-base-100 py-20 pb-24 rounded-b-2xl h-screen md:h-auto  md:py-0  md:w-auto 
           flex flex-col items-center md:justify-center 
           md:gap-10 top-0 right-0 md:flex-row md:static
            md:bg-transparent ${toggle === false ? "hidden md:flex" : ""}`}
@@ -76,7 +82,7 @@ const Navlinks = () => {
             >
               Leaderboard
             </Link>
-            <div className="dropdown dropdown-end  ">
+            <div className={` dropdown  dropdown-end  `}>
               <label
                 tabIndex={0}
                 className="btn  p-0 -py-2 min-h-min rounded-regBtn h-auto border-2  border-white"
@@ -89,14 +95,25 @@ const Navlinks = () => {
               >
                 <li className="">
                   <Link
+                    onClick={() => {
+                      setToggle(false);
+                      // setOpen(false);
+                    }}
                     href="/profile"
-                    // className="hover:text-white/50 hover:bg-dropBg/40 "
                   >
                     My profile
                   </Link>
                 </li>
                 <li>
-                  <Link href="/api/auth/signout">Sign Out</Link>
+                  <Link
+                    onClick={() => {
+                      setToggle(false);
+                      // setOpen(false);
+                    }}
+                    href="/api/auth/signout"
+                  >
+                    Sign Out
+                  </Link>
                 </li>
               </ul>
             </div>

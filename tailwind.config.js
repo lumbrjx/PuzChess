@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        header: "#191C20",
         signbg: "#151515",
         dropBg: "#1D2A35",
         navbg: "#2E2E2E",

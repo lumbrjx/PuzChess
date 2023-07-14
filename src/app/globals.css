@@ -11,7 +11,9 @@
     --clr-layout-green: 95 75% 50%;
   }
 }
-
+.hideScroll{
+  overflow : hidden
+}
 body {
   background-color: hsl(var(--clr-primary-black));
 }
