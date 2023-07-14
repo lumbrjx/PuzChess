@@ -19,8 +19,7 @@ const Navlinks = () => {
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "auto");
   }, [toggle]);
-  // const [open, setOpen] = useState(true);
-  // const ref = useRef();
+
   return (
     <>
       <nav
