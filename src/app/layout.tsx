@@ -23,6 +23,7 @@ export default function RootLayout({
         <QueryProvider>
           <AuthProvider>
             <Navbar />
+            {/* <div className="mb-12"></div> */}
             {children}
             <Footer />
           </AuthProvider>

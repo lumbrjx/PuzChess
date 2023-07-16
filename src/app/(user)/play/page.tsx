@@ -3,6 +3,7 @@ import { options } from "../../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 
 import { redirect } from "next/navigation";
+import GameSession from "@/components/layout/gameSession";
 
 export default async function Page() {
   const session = await getServerSession(options);
@@ -11,5 +12,9 @@ export default async function Page() {
     redirect("/auth/signin?callbackUrl=/play");
   }
 
-  return <section className="flex flex-col gap-6">play me</section>;
+  return (
+    <section className="flex flex-col gap-6">
+      <GameSession />
+    </section>
+  );
 }
