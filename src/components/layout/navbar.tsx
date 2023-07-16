@@ -8,7 +8,7 @@ const Navbar = () => {
   // console.log(pathname + jj);
   return (
     // pathname.includes("sign in") === false ? (
-    <header className=" bg-header z-50  text-clrFont py-4 text-smallFnt font-lightFnt px-4 lg:px-16 w-full flex flex-row items-center gap-24 justify-between fixed">
+    <header className=" bg-header z-40  text-clrFont py-4 text-smallFnt font-lightFnt px-4 lg:px-16 w-full flex flex-row items-center gap-24 justify-between fixed">
       <PageLogo />
 
       <Navlinks />
