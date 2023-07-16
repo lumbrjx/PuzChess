@@ -2,12 +2,19 @@
 import { useFetchPuzzle } from "@/lib/hooks/query/fetchPuzzle";
 import Button from "../ui/button";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlayTemp from "./playTemp";
+import ChessSession from "./chessSession";
 
 const GameSession = () => {
   const [game, setGame] = useState(false);
+  useEffect(() => {
+    game
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
+  }, [game]);
   const puzzle = useFetchPuzzle();
+  console.log(puzzle);
 
   return (
     <>
@@ -15,7 +22,7 @@ const GameSession = () => {
         <PlayTemp setGame={setGame} />
       ) : (
         <div className="py-40 flex px-40  justify-around  items-center w-full ">
-          gamr sesssion
+          <ChessSession setGame={setGame} chessObject={puzzle} />
         </div>
       )}
     </>
