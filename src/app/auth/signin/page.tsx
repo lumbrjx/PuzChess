@@ -35,7 +35,7 @@ const SignIn = () => {
         </div>
       </div>
 
-      <div className=" w-full absolute   opacity-50 -z-10 lg:-top-[1rem] -top-[10.5rem]    ">
+      <div className=" w-full absolute   opacity-50 -z-10 lg:top-[4rem] -top-[4.5rem]    ">
         <div className="w-full max-w-10 h-full  max-h-10 flex justify-end items-center mt-[16rem]">
           <Image
             alt="signinBg"

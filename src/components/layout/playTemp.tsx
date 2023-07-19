@@ -26,7 +26,9 @@ const PlayTemp: FC<setGame> = ({ setGame }) => {
             label="Play"
             style="Green"
             additional="rounded-regBtn px-8 text-black"
-            onClick={() => setGame(true)}
+            onClick={() => {
+              setGame(true);
+            }}
           />
         </div>
       </div>
