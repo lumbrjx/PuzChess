@@ -26,7 +26,7 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
     };
   }, [screenSize]);
   if (screenSize.width <= 450) {
-    thewidth = screenSize.width - 50;
+    thewidth = screenSize.width;
   }
   const theFen =
     "r4r2/2pqbppk/p2p1n1p/1p3N2/4PB2/1P1P3P/1PP3P1/R3QRK1 w - - 1 20";
@@ -44,7 +44,7 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
   // }
   return (
     <div className="  pb-26  gap-10 text-mediumF  w-full  top-0 bg-header flex flex-col items-center">
-      <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between">
+      <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between gap-8">
         <div className="">
           <p>the score</p>
         </div>
@@ -54,7 +54,7 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
             onIncorrect={() => console.log("not this time u sucker")}
             onSolve={() => console.log("good job boooy")}
             orientation={
-              getSideToPlayFromFen(theFen) === "b" ? "black" : "white"
+              getSideToPlayFromFen(theFen) === "b" ? "white" : "black"
             }
             sol={sol}
             width={thewidth}
@@ -62,7 +62,7 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
           />{" "}
         </div>
 
-        <div className="flex w-full justify-between text-white px-6 mt-4">
+        <div className="flex w-full justify-between text-white px-6 ">
           <Button
             label="Exit"
             style="Transparent"

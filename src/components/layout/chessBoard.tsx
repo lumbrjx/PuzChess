@@ -6,11 +6,13 @@ import React, { FC, useEffect, useState } from "react";
 import Tactic from "@/lib/types/chess";
 
 import {
+  // getPrevMoves,
   getSideToPlayFromFen,
   makeMove,
   validateMove,
 } from "../../lib/utils/chess";
 import convertStringToObject from "@/lib/utils/stringParser";
+import objectSlicer from "@/lib/utils/objectSlicer";
 interface BoardType {
   theFen: string;
   width?: number;
@@ -33,14 +35,23 @@ const ChessBoard: FC<BoardType> = ({
 }) => {
   const [fen, setFen] = useState(theFen);
   const [solution, setSolution] = useState(sol);
+  const [currentPosition, setCurrentposition] = useState<string | ShortMove>();
+  console.log("current position", currentPosition);
   useEffect(() => {
     setTimeout(() => {
-      const next = makeMove(theFen, solution[0]);
-      if (next) {
-        setFen(next.fen);
+      if (solution.length === 8) {
+        const next = validateMove(
+          fen,
+          convertStringToObject(solution[0], false),
+          solution
+        );
+        if (next) {
+          setFen(next.fen);
+          setSolution(next.solution);
+        }
       }
     }, 100);
-  }, [theFen]);
+  }, [solution]);
   console.log("now play this move ", solution[0]);
   const handleMove = (move: string | ShortMove) => {
     const next = validateMove(fen, move, solution);
@@ -49,6 +60,8 @@ const ChessBoard: FC<BoardType> = ({
     if (next) {
       setFen(next.fen);
       setSolution(next.solution);
+      setCurrentposition(objectSlicer(next.move));
+      // getPrevMoves();
 
       if (next.solution.length > 0 && solution[0] !== undefined) {
         onCorrect();
@@ -56,7 +69,7 @@ const ChessBoard: FC<BoardType> = ({
         const autoNext = validateMove(
           next.fen,
 
-          convertStringToObject(next.solution[0]),
+          convertStringToObject(next.solution[0], false),
           next.solution
         );
         console.log("imautonext", autoNext);
@@ -70,13 +83,17 @@ const ChessBoard: FC<BoardType> = ({
       }
     } else {
       onIncorrect();
+      setSolution(sol);
+      setFen(theFen);
     }
   };
 
   return (
     <Chessboard
-      transitionDuration={500}
+      transitionDuration={200}
       orientation={orientation}
+      dropSquareStyle={{ backgroundColor: "sienna" }}
+      // draggable={false}
       position={fen}
       width={width}
       boardStyle={{
@@ -89,6 +106,10 @@ const ChessBoard: FC<BoardType> = ({
           to: move.targetSquare,
           promotion: "q",
         });
+      }}
+      squareStyles={{
+        e4: { backgroundColor: "orange" },
+        d4: { backgroundColor: "blue" },
       }}
       lightSquareStyle={{ backgroundColor: "#F1F1F1" }}
       darkSquareStyle={{ backgroundColor: "#6D9D4C" }}

@@ -22,7 +22,7 @@ const GameSession = () => {
       {game === false ? (
         <PlayTemp setGame={setGame} />
       ) : (
-        <div className="py-24 flex md:px-40  justify-around  items-center w-full ">
+        <div className="py-28 flex md:px-40  justify-around  items-center w-full ">
           <ChessSession setGame={setGame} />
         </div>
       )}

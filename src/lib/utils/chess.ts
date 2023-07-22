@@ -8,11 +8,11 @@ export function getSideToPlayFromFen(fen: string) {
 }
 
 export function makeMove(fen: string, move: ShortMove | string) {
-  console.log("im fen form make", fen);
   console.log("im move form make", move);
   const chess: ChessInstance = new Chess(fen);
   const fullMove = chess.move(move);
-  console.log("im full move", fullMove);
+
+  console.log("im history");
 
   if (fullMove) {
     const nextPosition: string = fullMove.from + fullMove.to;
@@ -25,7 +25,7 @@ export function validateMove(
   fen: string,
   move: ShortMove | string,
   solution: string[]
-): null | { solution: string[]; fen: string } {
+): null | { solution: string[]; fen: string; move: string | ShortMove } {
   if (solution.length === 0) {
     return null;
   }
@@ -38,8 +38,13 @@ export function validateMove(
     return {
       fen: next.fen,
       solution: solution.slice(1),
+      move: move,
     };
   }
 
   return null;
 }
+
+// export function getPrevMoves() {
+//   const chess: ChessInstance = new Chess();
+// }
