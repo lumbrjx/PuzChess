@@ -1,10 +1,14 @@
 "use client";
+import { ShortMove } from "chess.js";
+import Chessboard from "chessboardjsx";
 import React, { FC, useEffect, useState } from "react";
 import PageLogo from "../ui/pageLogo";
 import Button from "../ui/button";
 import ChessBoard from "./chessBoard";
 import { useFetchPuzzle } from "@/lib/hooks/query/fetchPuzzle";
 import getCurrentDimension from "@/lib/utils/dimensions";
+import { getSideToPlayFromFen } from "../../lib/utils/chess";
+
 type setGameType = {
   setGame: (value: boolean) => void;
 };
@@ -24,6 +28,10 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
   if (screenSize.width <= 450) {
     thewidth = screenSize.width - 50;
   }
+  const theFen =
+    "r4r2/2pqbppk/p2p1n1p/1p3N2/4PB2/1P1P3P/1PP3P1/R3QRK1 w - - 1 20";
+  // r1b4k/ppp3bp/2npq1p1/6B1/3P4/2P2Q2/PP1K2PP/4R3 b - - 1 19
+  const sol = ["f4h6", "g7h6", "e4e5", "d6e5", "e1e5", "e7d8", "e5f4", "f6g8"];
   // const { data, error, refetch } = useFetchPuzzle();
   // {
   //   data
@@ -42,8 +50,15 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
         </div>
         <div>
           <ChessBoard
+            onCorrect={() => console.log("yeeeeyy correct")}
+            onIncorrect={() => console.log("not this time u sucker")}
+            onSolve={() => console.log("good job boooy")}
+            orientation={
+              getSideToPlayFromFen(theFen) === "b" ? "black" : "white"
+            }
+            sol={sol}
             width={thewidth}
-            fen={"3r2k1/p4pp1/2p2q2/5B1p/2P2n2/7P/P1Q1r1PK/R4R2 w - - 2 24"}
+            theFen={theFen}
           />{" "}
         </div>
 
