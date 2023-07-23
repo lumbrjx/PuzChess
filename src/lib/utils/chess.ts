@@ -1,27 +1,22 @@
 import { ChessInstance, ShortMove } from "chess.js";
-
 const Chess = require("chess.js");
-
-export function getSideToPlayFromFen(fen: string) {
+//checking which side should play
+export function getSidePlay(fen: string) {
   const chess: ChessInstance = new Chess(fen);
   return chess.turn();
 }
-
-export function makeMove(fen: string, move: ShortMove | string) {
-  console.log("im move form make", move);
+//making a move on the board
+export function makeMv(fen: string, move: ShortMove | string) {
   const chess: ChessInstance = new Chess(fen);
   const fullMove = chess.move(move);
-
-  console.log("im history");
-
   if (fullMove) {
     const nextPosition: string = fullMove.from + fullMove.to;
     return { nextPosition, fen: chess.fen() };
   }
   return null;
 }
-
-export function validateMove(
+//checking if the move is possible and valid according to the solution array from the api object
+export function validateMv(
   fen: string,
   move: ShortMove | string,
   solution: string[]
@@ -29,11 +24,8 @@ export function validateMove(
   if (solution.length === 0) {
     return null;
   }
-  console.log("im move", move);
-  console.log("im fen ", fen);
-  console.log("im solution ", solution);
-  const next = makeMove(fen, move);
-  console.log("inner next", next);
+  const next = makeMv(fen, move);
+  //returning the solution without the first arrg with move made and the new fen
   if (next?.nextPosition === solution[0]) {
     return {
       fen: next.fen,
@@ -41,10 +33,5 @@ export function validateMove(
       move: move,
     };
   }
-
   return null;
 }
-
-// export function getPrevMoves() {
-//   const chess: ChessInstance = new Chess();
-// }

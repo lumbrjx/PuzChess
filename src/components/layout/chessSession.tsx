@@ -1,20 +1,22 @@
 "use client";
-import { ShortMove } from "chess.js";
-import Chessboard from "chessboardjsx";
+
 import React, { FC, useEffect, useState } from "react";
-import PageLogo from "../ui/pageLogo";
 import Button from "../ui/button";
 import ChessBoard from "./chessBoard";
 import { useFetchPuzzle } from "@/lib/hooks/query/fetchPuzzle";
 import getCurrentDimension from "@/lib/utils/dimensions";
-import { getSideToPlayFromFen } from "../../lib/utils/chess";
+import { getSidePlay } from "../../lib/utils/chess";
 
 type setGameType = {
   setGame: (value: boolean) => void;
 };
+type gameStatusType = "PLAYING" | "WIN" | "LOSE";
+
 const ChessSession: FC<setGameType> = ({ setGame }) => {
   let thewidth: number = 450;
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [gameStatus, setGameStatus] = useState<gameStatusType>("PLAYING");
+  //resising the chessboard based on the screen size /there's no available way in the chessboardJsx lib/
   useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());
@@ -45,17 +47,32 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
   return (
     <div className="  pb-26  gap-10 text-mediumF  w-full  top-0 bg-header flex flex-col items-center">
       <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between gap-8">
-        <div className="">
-          <p>the score</p>
+        <div className="flex justify-between w-full px-6">
+          <p
+            className={` text-white ${gameStatus === "LOSE" && "text-red-400"}`}
+          >
+            the score
+          </p>
+          <p
+            className={` text-white ${
+              gameStatus === "LOSE" && "text-red-400"
+            } ${gameStatus === "WIN" && "text-green-400"}`}
+          >
+            {gameStatus === "WIN" && "Great!!"}
+            {gameStatus === "LOSE" && "Oops.."}
+          </p>
         </div>
-        <div>
+        <div
+          className={`rounded-md border-[4px] border-clrPrimaryBlack${
+            gameStatus === "LOSE" && "  border-red-400"
+          } ${gameStatus === "WIN" && "border-green-400"}`}
+        >
           <ChessBoard
-            onCorrect={() => console.log("yeeeeyy correct")}
-            onIncorrect={() => console.log("not this time u sucker")}
-            onSolve={() => console.log("good job boooy")}
-            orientation={
-              getSideToPlayFromFen(theFen) === "b" ? "white" : "black"
-            }
+            gameStatus={gameStatus}
+            onCorrect={() => setGameStatus("PLAYING")}
+            onIncorrect={() => setGameStatus("LOSE")}
+            onSolve={() => setGameStatus("WIN")}
+            orientation={getSidePlay(theFen) === "b" ? "white" : "black"}
             sol={sol}
             width={thewidth}
             theFen={theFen}
@@ -69,12 +86,21 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
             additional="rounded-regBtn px-8 text-white"
             onClick={() => setGame(false)}
           />
-          <Button
-            label="Next"
-            style="Green"
-            additional="rounded-regBtn px-8 text-black"
-            // onClick={refetch}
-          />
+          {gameStatus === "PLAYING" || gameStatus === "LOSE" ? (
+            <Button
+              label="Next"
+              style="Green"
+              disable
+              additional="rounded-regBtn px-8 text-black  opacity-40"
+            />
+          ) : (
+            <Button
+              label="Next"
+              style="Green"
+              additional="rounded-regBtn px-8 text-black"
+              // onClick={refetch}
+            />
+          )}
         </div>
       </div>
     </div>
