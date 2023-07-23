@@ -48,15 +48,13 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
     <div className="  pb-26  gap-10 text-mediumF  w-full  top-0 bg-header flex flex-col items-center">
       <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between gap-8">
         <div className="flex justify-between w-full px-6">
-          <p
-            className={` ${gameStatus === "LOSE" && "text-red-400"}`}
-          >
+          <p className={`  ${gameStatus === "LOSE" && "text-red-400"}`}>
             the score
           </p>
           <p
-            className={`  ${
-              gameStatus === "LOSE" && "text-red-400"
-            } ${gameStatus === "WIN" && "text-green-400"}`}
+            className={`  ${gameStatus === "LOSE" && "text-red-400"} ${
+              gameStatus === "WIN" && "text-green-400"
+            }`}
           >
             {gameStatus === "WIN" && "Great!!"}
             {gameStatus === "LOSE" && "Oops.."}
