@@ -6,7 +6,7 @@ type setGame = {
 };
 const PlayTemp: FC<setGame> = ({ setGame }) => {
   return (
-    <div className="py-40 flex px-10  lg:px-40 justify-around  items-center w-full  ">
+    <div className="py-44 flex px-10  lg:px-40 justify-around  items-center w-full  ">
       <div className="flex w-auto gap-12 flex-col items-start">
         <div className="flex  flex-col md:items-start items-center">
           <h2 className="md:text-largeFnt text-[2.3rem]  font-boldFnt text-center md:text-left">

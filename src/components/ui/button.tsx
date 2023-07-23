@@ -7,9 +7,11 @@ interface Btn {
   onClick?: () => any;
   asset?: boolean;
   asset_type?: "Google";
+  disable?: true;
 }
 
 const Button = ({
+  disable,
   label,
   style,
   onClick,
@@ -21,6 +23,7 @@ const Button = ({
     <>
       <button
         onClick={onClick}
+        disabled={disable ? true : false}
         className={`
     ${
       style === "Green"

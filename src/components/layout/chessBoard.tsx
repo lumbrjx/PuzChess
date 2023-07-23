@@ -1,27 +1,28 @@
 "use client";
-import getCurrentDimension from "@/lib/utils/dimensions";
+
 import { ShortMove } from "chess.js";
 import Chessboard from "chessboardjsx";
 import React, { FC, useEffect, useState } from "react";
-import Tactic from "@/lib/types/chess";
 
-import {
-  // getPrevMoves,
-  getSideToPlayFromFen,
-  makeMove,
-  validateMove,
-} from "../../lib/utils/chess";
+import { validateMove } from "../../lib/utils/chess";
 import convertStringToObject from "@/lib/utils/stringParser";
 import objectSlicer from "@/lib/utils/objectSlicer";
+
+//types for the component and the position object
 interface BoardType {
   theFen: string;
   width?: number;
   orientation: "white" | "black" | undefined;
   sol: string[];
-  // tactic: Tactic;
+
   onIncorrect: () => void;
   onCorrect: () => void;
   onSolve: () => void;
+  gameStatus: "PLAYING" | "WIN" | "LOSE";
+}
+interface positionState {
+  from: string;
+  to: string;
 }
 
 const ChessBoard: FC<BoardType> = ({
@@ -32,13 +33,18 @@ const ChessBoard: FC<BoardType> = ({
   onCorrect,
   onIncorrect,
   onSolve,
+  gameStatus,
 }) => {
+  // fen, solution, position states
   const [fen, setFen] = useState(theFen);
   const [solution, setSolution] = useState(sol);
-  const [currentPosition, setCurrentposition] = useState<string | ShortMove>();
-  console.log("current position", currentPosition);
+  const [currentPosition, setCurrentposition] = useState<positionState>();
+  //making the first move by the engine based on the solution rules =>
+  //*always the opposite side make the first move*
   useEffect(() => {
     setTimeout(() => {
+      //the solution array always have 8 moves if its less than 8 means
+      //the first move already has been played
       if (solution.length === 8) {
         const next = validateMove(
           fen,
@@ -48,35 +54,34 @@ const ChessBoard: FC<BoardType> = ({
         if (next) {
           setFen(next.fen);
           setSolution(next.solution);
+          setCurrentposition(objectSlicer(next.move));
         }
       }
     }, 100);
   }, [solution]);
-  console.log("now play this move ", solution[0]);
-  const handleMove = (move: string | ShortMove) => {
+  // the core function for checking the move validation and making the autoMove *the engine next move*
+  const doMove = (move: string | ShortMove) => {
     const next = validateMove(fen, move, solution);
-    // console.log("move from front ", next);
 
     if (next) {
       setFen(next.fen);
       setSolution(next.solution);
-      setCurrentposition(objectSlicer(next.move));
-      // getPrevMoves();
 
       if (next.solution.length > 0 && solution[0] !== undefined) {
         onCorrect();
-        // console.log("lonely sol ", solution);
+
         const autoNext = validateMove(
           next.fen,
 
           convertStringToObject(next.solution[0], false),
           next.solution
         );
-        console.log("imautonext", autoNext);
+
         if (autoNext) {
           setFen(autoNext.fen);
-          console.log("autonext sol ", autoNext.solution);
+
           setSolution(autoNext.solution);
+          setCurrentposition(objectSlicer(autoNext.move));
         }
       } else {
         onSolve();
@@ -87,30 +92,36 @@ const ChessBoard: FC<BoardType> = ({
       setFen(theFen);
     }
   };
+  //object for the square styling *the old and the new cordinate of the played peice*
+  const squareStyles: { [key: string]: { backgroundColor: string } } = {};
+
+  if (currentPosition && currentPosition.from) {
+    squareStyles[currentPosition.from] = { backgroundColor: "#ACA733" };
+  }
+
+  if (currentPosition && currentPosition.to) {
+    squareStyles[currentPosition.to] = { backgroundColor: "#ACA733" };
+  }
 
   return (
     <Chessboard
       transitionDuration={200}
       orientation={orientation}
       dropSquareStyle={{ backgroundColor: "sienna" }}
-      // draggable={false}
+      draggable={gameStatus === "WIN" ? false : true}
       position={fen}
       width={width}
       boardStyle={{
         borderRadius: "100px",
       }}
       onDrop={(move) => {
-        // console.log(move);
-        handleMove({
+        doMove({
           from: move.sourceSquare,
           to: move.targetSquare,
           promotion: "q",
         });
       }}
-      squareStyles={{
-        e4: { backgroundColor: "orange" },
-        d4: { backgroundColor: "blue" },
-      }}
+      squareStyles={squareStyles}
       lightSquareStyle={{ backgroundColor: "#F1F1F1" }}
       darkSquareStyle={{ backgroundColor: "#6D9D4C" }}
     />

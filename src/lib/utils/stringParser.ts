@@ -1,5 +1,5 @@
 import { ShortMove, Square } from "chess.js";
-
+//string to shortmove / object converter function
 export default function convertStringToObject(
   moveString: string,
   onlyPosition: boolean
