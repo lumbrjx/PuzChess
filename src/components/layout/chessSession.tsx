@@ -49,12 +49,12 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
       <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between gap-8">
         <div className="flex justify-between w-full px-6">
           <p
-            className={` text-white ${gameStatus === "LOSE" && "text-red-400"}`}
+            className={` ${gameStatus === "LOSE" && "text-red-400"}`}
           >
             the score
           </p>
           <p
-            className={` text-white ${
+            className={`  ${
               gameStatus === "LOSE" && "text-red-400"
             } ${gameStatus === "WIN" && "text-green-400"}`}
           >
