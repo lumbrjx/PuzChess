@@ -4,7 +4,7 @@ import { ShortMove } from "chess.js";
 import Chessboard from "chessboardjsx";
 import React, { FC, useEffect, useState } from "react";
 
-import { validateMove } from "../../lib/utils/chess";
+import { validateMv } from "../../lib/utils/chess";
 import convertStringToObject from "@/lib/utils/stringParser";
 import objectSlicer from "@/lib/utils/objectSlicer";
 
@@ -46,7 +46,7 @@ const ChessBoard: FC<BoardType> = ({
       //the solution array always have 8 moves if its less than 8 means
       //the first move already has been played
       if (solution.length === 8) {
-        const next = validateMove(
+        const next = validateMv(
           fen,
           convertStringToObject(solution[0], false),
           solution
@@ -61,7 +61,7 @@ const ChessBoard: FC<BoardType> = ({
   }, [solution]);
   // the core function for checking the move validation and making the autoMove *the engine next move*
   const doMove = (move: string | ShortMove) => {
-    const next = validateMove(fen, move, solution);
+    const next = validateMv(fen, move, solution);
 
     if (next) {
       setFen(next.fen);
@@ -70,7 +70,7 @@ const ChessBoard: FC<BoardType> = ({
       if (next.solution.length > 0 && solution[0] !== undefined) {
         onCorrect();
 
-        const autoNext = validateMove(
+        const autoNext = validateMv(
           next.fen,
 
           convertStringToObject(next.solution[0], false),
