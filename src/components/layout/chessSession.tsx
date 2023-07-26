@@ -6,13 +6,19 @@ import ChessBoard from "./chessBoard";
 import { useFetchPuzzle } from "@/lib/hooks/query/fetchPuzzle";
 import getCurrentDimension from "@/lib/utils/dimensions";
 import { getSidePlay } from "../../lib/utils/chess";
+import { useSession } from "next-auth/react";
+import { useFetchUser } from "@/lib/hooks/query/fetchUser";
+import { useUpdateScore } from "@/lib/hooks/mutate/updateScore";
 
 type setGameType = {
   setGame: (value: boolean) => void;
+  user: {
+    score: number;
+  };
 };
 type gameStatusType = "PLAYING" | "WIN" | "LOSE";
 
-const ChessSession: FC<setGameType> = ({ setGame }) => {
+const ChessSession: FC<setGameType> = ({ setGame, user }) => {
   let thewidth: number = 450;
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [gameStatus, setGameStatus] = useState<gameStatusType>("PLAYING");
@@ -44,12 +50,23 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
   //     ? console.log("refeting ur  stupid data")
   //     : "";
   // }
+  const { data: session } = useSession();
+
+  const { mutate } = useUpdateScore(session?.user?.email);
+  useEffect(() => {
+    if (gameStatus === "WIN") {
+      mutate({ score: user?.score, state: gameStatus });
+    }
+    if (gameStatus === "LOSE") {
+      mutate({ score: user?.score, state: gameStatus });
+    }
+  }, [gameStatus]);
   return (
     <div className="  pb-26  gap-10 text-mediumF  w-full  top-0 bg-header flex flex-col items-center">
       <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between gap-8">
         <div className="flex justify-between w-full px-6">
           <p className={`  ${gameStatus === "LOSE" && "text-red-400"}`}>
-            the score
+            {user?.score}
           </p>
           <p
             className={`  ${gameStatus === "LOSE" && "text-red-400"} ${
@@ -67,9 +84,15 @@ const ChessSession: FC<setGameType> = ({ setGame }) => {
         >
           <ChessBoard
             gameStatus={gameStatus}
-            onCorrect={() => setGameStatus("PLAYING")}
-            onIncorrect={() => setGameStatus("LOSE")}
-            onSolve={() => setGameStatus("WIN")}
+            onCorrect={() => setGameStatus((prev) => "PLAYING")}
+            onIncorrect={() => {
+              setGameStatus((prev) => "LOSE");
+              //
+            }}
+            onSolve={() => {
+              setGameStatus((prev) => "WIN");
+              // mutate({ score: user?.score, state: gameStatus });
+            }}
             orientation={getSidePlay(theFen) === "b" ? "white" : "black"}
             sol={sol}
             width={thewidth}

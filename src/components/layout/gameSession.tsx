@@ -5,10 +5,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import PlayTemp from "./playTemp";
 import ChessSession from "./chessSession";
+import { useFetchUser } from "@/lib/hooks/query/fetchUser";
+import { useSession } from "next-auth/react";
 
 const GameSession = () => {
-  const [fetch, setFetch] = useState(false);
+  const { data: session } = useSession();
 
+  const [fetch, setFetch] = useState(false);
+  const user = useFetchUser(session?.user?.email);
   const [game, setGame] = useState(false);
   console.log("fetch in game", fetch);
   // useEffect(() => {
@@ -20,10 +24,10 @@ const GameSession = () => {
   return (
     <>
       {game === false ? (
-        <PlayTemp setGame={setGame} />
+        <PlayTemp setGame={setGame} user={user} />
       ) : (
         <div className="py-28 flex md:px-40  justify-around  items-center w-full ">
-          <ChessSession setGame={setGame} />
+          <ChessSession setGame={setGame} user={user} />
         </div>
       )}
     </>
