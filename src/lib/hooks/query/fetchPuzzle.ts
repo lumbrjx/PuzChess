@@ -2,23 +2,17 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
-// fetching data using axios if no user is entered return null
+// fetching data using axios from the external api
 export const useFetchPuzzle = () => {
-  //   async function queryPuzzle() {
-  //     const { data } = await axios.get(`https://chess-puzzles.p.rapidapi.com/`, {
-  //       headers: {
-  //         "X-RapidAPI-Key": process.env.XRapidAPIKey as string,
-  //         "X-RapidAPI-Host": "chess-puzzles.p.rapidapi.com",
-  //       },
-  //     });
-  //     return data;
-  //   }
   async function queryPuzzle() {
     const options = {
       method: "GET",
       url: "https://chess-puzzles.p.rapidapi.com/",
+      params: {
+        playerMoves: "4",
+      },
       headers: {
-        "X-RapidAPI-Key": "a3f98d2b7cmsh9b3803a98f6e57bp189218jsn9feb7a8e4a94",
+        "X-RapidAPI-Key": "3b38294e82msh042338a6ea5f1a8p1a8714jsnec1c2a1dac8f",
         "X-RapidAPI-Host": "chess-puzzles.p.rapidapi.com",
       },
     };
@@ -42,12 +36,8 @@ export const useFetchPuzzle = () => {
     }
   );
 
-  // Execute the query function when 'fetch' state changes
-
   try {
-    console.log(data);
-    // console.log(data);
-    return { data, error, refetch } as any;
+    return { data, error, refetch, isLoading } as any;
   } catch (error) {
     return null;
   }

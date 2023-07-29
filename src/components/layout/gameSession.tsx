@@ -1,30 +1,22 @@
 "use client";
-import { useFetchPuzzle } from "@/lib/hooks/query/fetchPuzzle";
-import Button from "../ui/button";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import PlayTemp from "./playTemp";
 import ChessSession from "./chessSession";
 import { useFetchUser } from "@/lib/hooks/query/fetchUser";
 import { useSession } from "next-auth/react";
 
 const GameSession = () => {
+  //session data
   const { data: session } = useSession();
-
-  const [fetch, setFetch] = useState(false);
+  //fetching user info to update his score
   const user = useFetchUser(session?.user?.email);
+  //game state *game session is started or not?*
   const [game, setGame] = useState(false);
-  console.log("fetch in game", fetch);
-  // useEffect(() => {
-  //   game
-  //     ? (document.body.style.overflow = "hidden")
-  //     : (document.body.style.overflow = "auto");
-  // }, [game]);
-
   return (
     <>
       {game === false ? (
-        <PlayTemp setGame={setGame} user={user} />
+        <PlayTemp setGame={setGame} />
       ) : (
         <div className="py-28 flex md:px-40  justify-around  items-center w-full ">
           <ChessSession setGame={setGame} user={user} />
