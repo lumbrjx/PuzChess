@@ -6,8 +6,8 @@ import "./globals.css";
 export default async function Home() {
   return (
     <div className="text-[2.3rem] leading-tight md:text-largeFnt text-center lg:text-left md:pt-40 font-boldFnt text-clrFont pt-10 flex flex-col items-center w-full ">
-      <div className="  flex px-2 md:ps-6 lg:px-[6rem] lg:pe-[2rem]  w-full md:justify-between items-center flex-col-reverse lg:flex-row lg:items-start mb-64 ">
-        <div className=" pt-16 flex flex-col items-center lg:items-start">
+      <div className="  flex px-2 md:ps-6 lg:px-[6rem] lg:pe-[2rem]  w-full md:justify-center md:gap-48 items-center flex-col-reverse lg:flex-row lg:items-start mb-64 ">
+        <div className=" pt-16 flex flex-col items-center lg:items-start ">
           <div className=" mb-16 max-w-2xl">
             <h1 className="mb-3">
               Taking your <span className="text-clrLayoutGreen">chess</span>{" "}
@@ -35,7 +35,7 @@ export default async function Home() {
           />{" "}
         </div>
       </div>
-      <div className="flex px-2 md:ps-6 lg:px-[6rem] w-full flex-col-reverse items-center lg:flex-row lg:justify-between lg:items-start   mb-64  ">
+      <div className="flex px-2 md:ps-6 lg:px-[6rem] w-full flex-col-reverse items-center lg:flex-row lg:justify-center lg:gap-48 lg:items-start   mb-64  ">
         <div className=" mb-16 pt-1 md:pt-12 max-w-2xl ">
           <h2 className="mb-3">Sharpen your skills</h2>
           <h2 className=" text-mediumF font-midFnt mb-3 ">
@@ -51,7 +51,7 @@ export default async function Home() {
           <div className="max-w-[10.65288rem]   sm:max-w-[16.65288rem] w-full  h-[10.476rem] absolute  z-10 -bottom-[2.4rem] right-[5.4rem] bg3  "></div>
         </div>
       </div>
-      <div className="flex justify-between px-2  lg:px-[6rem] w-full flex-col-reverse items-center lg:flex-row lg:justify-between lg:items-start   mb-64 ">
+      <div className="flex justify-between px-2  lg:px-[6rem] w-full flex-col-reverse items-center lg:flex-row lg:justify-center lg:gap-48 lg:items-start   mb-64 ">
         <div className=" flex flex-col items-center lg:items-start">
           <div className=" mb-16 max-w-2xl">
             <h1 className="mb-3">On the edge!</h1>
@@ -73,7 +73,7 @@ export default async function Home() {
           <div className="max-w-[6.65288rem]   sm:max-w-[16.65288rem] w-full  h-[10.476rem] absolute  z-10 top-[0rem] right-[1.8rem] sm:right-[0rem] bg6  "></div>
         </div>
       </div>
-      <div className=" mb-36 md:pe-[2rem] flex justify-between text-center lg:text-left px-2 lg:px-[6rem] w-full flex-col-reverse items-center lg:flex-row lg:justify-between lg:items-start   ">
+      <div className=" mb-36 md:pe-[2rem] flex justify-between text-center lg:text-left px-2 lg:px-[6rem] w-full flex-col-reverse items-center lg:flex-row lg:justify-center lg:gap-48 lg:items-start   ">
         <div className=" mb-16 pt-12 max-w-2xl ">
           <h2 className="mb-3">Dive in</h2>
           <h2 className=" text-mediumF font-midFnt mb-3 ">

@@ -2,7 +2,7 @@ import React from "react";
 
 const FAQ = () => {
   return (
-    <div className="w-full text-mediumFnt font-midFnt text-clrFont px-4 gap-20 lg:px-16 pb-16 flex flex-col justify-center pt-[10rem] mb-[10rem]">
+    <div className="w-full text-mediumFnt font-midFnt max-w-[50rem] text-clrFont px-4 gap-20 lg:px-16 pb-16 flex flex-col justify-center pt-[10rem] mb-[10rem]">
       <h2 className="text-largeFnt">Frequently Asked Questions</h2>
 
       <div className="flex flex-col gap-3">
