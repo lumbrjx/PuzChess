@@ -31,8 +31,6 @@ import { Prisma } from "@prisma/client";
 //   }
 // };
 
-
-
 export const getAuthUser = async (email: string) => {
   const authUser = await prisma.user.findFirst({
     where: {
@@ -61,4 +59,20 @@ export const getUser = async (email: string) => {
   });
 
   return theUser;
+};
+export const getPlayers = async () => {
+  const topPlayers = await prisma.user.findMany({
+    orderBy: {
+      score: "desc", // Order by score in descending order
+    },
+    take: 100, // Limit the results to the first 100 users
+    select: {
+      name: true,
+      badge: true,
+      score: true,
+      image: true,
+    },
+  });
+
+  return topPlayers;
 };
