@@ -24,9 +24,9 @@ export async function PATCH(req: NextRequest) {
       },
     });
 
-    return NextResponse.json(user);
+    return NextResponse.json(user.score);
   } catch (error) {
     console.log(error);
-    return NextResponse.json("hhhhh");
+    return NextResponse.json("error check server");
   }
 }

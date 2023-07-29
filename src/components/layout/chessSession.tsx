@@ -7,7 +7,6 @@ import { useFetchPuzzle } from "@/lib/hooks/query/fetchPuzzle";
 import getCurrentDimension from "@/lib/utils/dimensions";
 import { getSidePlay } from "../../lib/utils/chess";
 import { useSession } from "next-auth/react";
-import { useFetchUser } from "@/lib/hooks/query/fetchUser";
 import { useUpdateScore } from "@/lib/hooks/mutate/updateScore";
 
 type setGameType = {
@@ -20,7 +19,9 @@ type gameStatusType = "PLAYING" | "WIN" | "LOSE";
 
 const ChessSession: FC<setGameType> = ({ setGame, user }) => {
   let thewidth: number = 450;
+  //screen size state
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  // current game status *player playing/ losing/ winning *
   const [gameStatus, setGameStatus] = useState<gameStatusType>("PLAYING");
   //resising the chessboard based on the screen size /there's no available way in the chessboardJsx lib/
   useEffect(() => {
@@ -36,37 +37,51 @@ const ChessSession: FC<setGameType> = ({ setGame, user }) => {
   if (screenSize.width <= 450) {
     thewidth = screenSize.width;
   }
-  const theFen =
-    "r4r2/2pqbppk/p2p1n1p/1p3N2/4PB2/1P1P3P/1PP3P1/R3QRK1 w - - 1 20";
-  // r1b4k/ppp3bp/2npq1p1/6B1/3P4/2P2Q2/PP1K2PP/4R3 b - - 1 19
-  const sol = ["f4h6", "g7h6", "e4e5", "d6e5", "e1e5", "e7d8", "e5f4", "f6g8"];
-  // const { data, error, refetch } = useFetchPuzzle();
-  // {
-  //   data
-  //     ? console.log(data.puzzles[0].fen)
-  //     : error
-  //     ? console.log(error)
-  //     : refetch
-  //     ? console.log("refeting ur  stupid data")
-  //     : "";
-  // }
+  //fetching the chess puzzle form the api
+  const { data: obj, error, refetch } = useFetchPuzzle();
+  //session data
   const { data: session } = useSession();
-
-  const { mutate } = useUpdateScore(session?.user?.email);
+  //the fen and the solution states
+  const [fen, setFen] = useState(obj?.puzzles[0].fen);
+  const [solution, setSolution] = useState(obj?.puzzles[0].moves);
+  //setting the initial fen/solution states when the api object is available
+  useEffect(() => {
+    if (obj?.puzzles[0].fen) {
+      setFen(obj?.puzzles[0].fen);
+      setSolution(obj?.puzzles[0].moves);
+    }
+  }, [obj?.puzzles[0].fen]);
+  //updating user score
+  const { mutate, data } = useUpdateScore(session?.user?.email);
   useEffect(() => {
     if (gameStatus === "WIN") {
-      mutate({ score: user?.score, state: gameStatus });
+      if (data?.data) {
+        mutate({ score: data?.data, state: gameStatus });
+      } else {
+        mutate({ score: user?.score, state: gameStatus });
+      }
     }
     if (gameStatus === "LOSE") {
-      mutate({ score: user?.score, state: gameStatus });
+      if (data?.data) {
+        mutate({ score: data?.data, state: gameStatus });
+      } else {
+        mutate({ score: user?.score, state: gameStatus });
+      }
     }
   }, [gameStatus]);
+  //refetching from the api if the user wins the round
+  //i made this due to api limitations
+  const handleNextButtonClick = () => {
+    refetch();
+    setGameStatus("PLAYING");
+  };
   return (
     <div className="  pb-26  gap-10 text-mediumF  w-full  top-0 bg-header flex flex-col items-center">
       <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between gap-8">
         <div className="flex justify-between w-full px-6">
           <p className={`  ${gameStatus === "LOSE" && "text-red-400"}`}>
-            {user?.score}
+            {data?.data ? data?.data : "Waiting.."}
+            {error && "Error"}
           </p>
           <p
             className={`  ${gameStatus === "LOSE" && "text-red-400"} ${
@@ -83,6 +98,10 @@ const ChessSession: FC<setGameType> = ({ setGame, user }) => {
           } ${gameStatus === "WIN" && "border-green-400"}`}
         >
           <ChessBoard
+            fen={fen}
+            setFen={setFen}
+            solution={solution}
+            setSolution={setSolution}
             gameStatus={gameStatus}
             onCorrect={() => setGameStatus((prev) => "PLAYING")}
             onIncorrect={() => {
@@ -91,12 +110,13 @@ const ChessSession: FC<setGameType> = ({ setGame, user }) => {
             }}
             onSolve={() => {
               setGameStatus((prev) => "WIN");
-              // mutate({ score: user?.score, state: gameStatus });
             }}
-            orientation={getSidePlay(theFen) === "b" ? "white" : "black"}
-            sol={sol}
+            orientation={
+              getSidePlay(obj?.puzzles[0].fen) === "b" ? "white" : "black"
+            }
+            sol={obj?.puzzles[0].moves}
             width={thewidth}
-            theFen={theFen}
+            theFen={obj?.puzzles[0].fen}
           />{" "}
         </div>
 
@@ -119,7 +139,7 @@ const ChessSession: FC<setGameType> = ({ setGame, user }) => {
               label="Next"
               style="Green"
               additional="rounded-regBtn px-8 text-black"
-              // onClick={refetch}
+              onClick={handleNextButtonClick}
             />
           )}
         </div>

@@ -21,7 +21,7 @@ export function validateMv(
   move: ShortMove | string,
   solution: string[]
 ): null | { solution: string[]; fen: string; move: string | ShortMove } {
-  if (solution.length === 0) {
+  if (solution?.length === 0) {
     return null;
   }
   const next = makeMv(fen, move);

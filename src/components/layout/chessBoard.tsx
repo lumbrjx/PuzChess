@@ -14,7 +14,10 @@ interface BoardType {
   width?: number;
   orientation: "white" | "black" | undefined;
   sol: string[];
-
+  fen: string;
+  solution: string[];
+  setFen: any;
+  setSolution: any;
   onIncorrect: () => void;
   onCorrect: () => void;
   onSolve: () => void;
@@ -27,6 +30,10 @@ interface positionState {
 
 const ChessBoard: FC<BoardType> = ({
   theFen,
+  fen,
+  solution,
+  setFen,
+  setSolution,
   width,
   orientation,
   sol,
@@ -35,9 +42,7 @@ const ChessBoard: FC<BoardType> = ({
   onSolve,
   gameStatus,
 }) => {
-  // fen, solution, position states
-  const [fen, setFen] = useState(theFen);
-  const [solution, setSolution] = useState(sol);
+  //the last played piece position
   const [currentPosition, setCurrentposition] = useState<positionState>();
   //making the first move by the engine based on the solution rules =>
   //*always the opposite side make the first move*
@@ -45,7 +50,7 @@ const ChessBoard: FC<BoardType> = ({
     setTimeout(() => {
       //the solution array always have 8 moves if its less than 8 means
       //the first move already has been played
-      if (solution.length === 8) {
+      if (solution?.length === 8) {
         const next = validateMv(
           fen,
           convertStringToObject(solution[0], false),

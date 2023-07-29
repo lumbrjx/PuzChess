@@ -3,11 +3,8 @@ import Button from "../ui/button";
 import Image from "next/image";
 type setGame = {
   setGame: (value: boolean) => void;
-  user: {
-    score: number;
-  };
 };
-const PlayTemp: FC<setGame> = ({ setGame, user }) => {
+const PlayTemp: FC<setGame> = ({ setGame }) => {
   return (
     <div className="py-44 flex px-10  lg:px-40 justify-around  items-center w-full  ">
       <div className="flex w-auto gap-12 flex-col items-start">
@@ -20,7 +17,6 @@ const PlayTemp: FC<setGame> = ({ setGame, user }) => {
           </p>
         </div>
         <div className="flex gap-4 justify-center  md:justify-between  md:items-start  w-full max-w-[18rem] text-mediumFnt">
-          <p>{user?.score} pt</p>
           <p>badge</p>
           <p>elo</p>
         </div>
