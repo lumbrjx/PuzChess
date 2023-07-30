@@ -16,7 +16,7 @@ const GameSession = () => {
   return (
     <>
       {game === false ? (
-        <PlayTemp setGame={setGame} />
+        <PlayTemp setGame={setGame} user={user} />
       ) : (
         <div className="py-28 flex md:px-40  justify-around  items-center w-full ">
           <ChessSession setGame={setGame} user={user} />

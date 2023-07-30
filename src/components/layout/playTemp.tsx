@@ -1,10 +1,16 @@
 import React, { FC } from "react";
 import Button from "../ui/button";
 import Image from "next/image";
+import Badge from "../ui/badge";
 type setGame = {
   setGame: (value: boolean) => void;
+  user: {
+    score: number;
+    badge: "ROCKIE" | "SILVER" | "GOLDEN" | "DIAMOND" | "PLATINIUM";
+    chessElo: number;
+  };
 };
-const PlayTemp: FC<setGame> = ({ setGame }) => {
+const PlayTemp: FC<setGame> = ({ setGame, user }) => {
   return (
     <div className="py-44 flex px-10  lg:px-40 justify-around  items-center w-full  ">
       <div className="flex w-auto gap-12 flex-col items-start">
@@ -17,8 +23,14 @@ const PlayTemp: FC<setGame> = ({ setGame }) => {
           </p>
         </div>
         <div className="flex gap-4 justify-center  md:justify-between  md:items-start  w-full max-w-[18rem] text-mediumFnt">
-          <p>badge</p>
-          <p>elo</p>
+          <div className="flex items-center gap-2">
+            <p>{user?.badge.toLowerCase()} league</p>
+            <div className=" ">
+              <Badge badge={user?.badge} />
+            </div>
+          </div>
+
+          <p>elo: {user?.chessElo}</p>
         </div>
         <div className="flex w-full max-w-[18rem] justify-center md:justify-start">
           <Button

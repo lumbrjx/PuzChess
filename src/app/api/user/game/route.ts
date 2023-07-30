@@ -1,6 +1,31 @@
 import prisma from "@/server/db/seed";
 import { NextRequest, NextResponse } from "next/server";
+
+enum budges {
+  "ROCKIE",
+  "SILVER",
+  "GOLDEN",
+  "DIAMOND",
+  "PLATINIUM",
+}
 // http://localhost:3000/api/user/game?email=${email}
+// Helper function to determine the badge based on the score
+function calculateBadge(score: number): string {
+  if (score <= 600) {
+    return "ROCKIE";
+  } else if (score <= 800) {
+    return "SILVER";
+  } else if (score < 1100) {
+    return "GOLDEN";
+  } else if (score < 2000) {
+    return "DIAMOND";
+  } else {
+    return "PLATINIUM";
+  }
+}
+
+// ...
+
 export async function PATCH(req: NextRequest) {
   const email = req.nextUrl.searchParams.get("email") as string;
 
@@ -9,11 +34,12 @@ export async function PATCH(req: NextRequest) {
   console.log(await score);
   if (state === "WIN") {
     score += 20;
-  }
-  if (state === "LOSE") {
+  } else if (state === "LOSE") {
     score -= 20;
   }
-  console.log(score);
+
+  const badge = calculateBadge(score); // Calculate the badge based on the score
+
   try {
     const user = await prisma.user.update({
       where: {
@@ -21,6 +47,7 @@ export async function PATCH(req: NextRequest) {
       },
       data: {
         score: score,
+        badge: badge as any | budges | undefined, // Assign the calculated badge
       },
     });
 
