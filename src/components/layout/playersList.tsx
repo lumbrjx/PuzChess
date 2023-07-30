@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import PlayerCard from "./playerCard";
 type playersType = {
   players:

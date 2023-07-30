@@ -60,6 +60,21 @@ export const getUser = async (email: string) => {
 
   return theUser;
 };
+export const showUser = async (name: string) => {
+  const theUser = await prisma.user.findFirst({
+    where: {
+      name: name,
+    },
+    select: {
+      name: true,
+      badge: true,
+      chessElo: true,
+      image: true,
+    },
+  });
+  console.log(theUser);
+  return theUser;
+};
 export const getPlayers = async () => {
   const topPlayers = await prisma.user.findMany({
     orderBy: {
