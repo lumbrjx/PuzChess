@@ -4,7 +4,7 @@ type playersType = {
   players:
     | {
         name: string;
-        badge: string;
+        badge: "ROCKIE" | "SILVER" | "GOLDEN" | "DIAMOND" | "PLATINIUM";
         score: number;
         image: string | null;
       }[]
