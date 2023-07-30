@@ -22,6 +22,7 @@ export default async function Leaderboard() {
       <p className="md:text-largeFnt text-[2.3rem]  font-boldFnt text-center md:text-left mb-10">
         Leaderboard
       </p>
+
       <div className="w-full flex justify-center md:justify-start">
         <PlayersList players={topPlayerss} />
       </div>

@@ -1,13 +1,15 @@
+import Badge from "../ui/badge";
 import UserImg from "../ui/userImg";
 
 type playerType = {
   name: string;
-  badge: string;
+  badge: "ROCKIE" | "SILVER" | "GOLDEN" | "DIAMOND" | "PLATINIUM";
   score: number;
   image: string | null;
+  rank: number;
 };
 
-const PlayerCard = ({ name, badge, score, image }: playerType) => {
+const PlayerCard = ({ name, badge, score, image, rank }: playerType) => {
   return (
     <div
       className="py-6 px-6 border border-1 border-clrSecondaryGrey 
@@ -15,12 +17,13 @@ const PlayerCard = ({ name, badge, score, image }: playerType) => {
      rounded-2xl text-mediumFnt mb-4 gap-2"
     >
       <div className="flex gap-4 items-center  flex-wrap">
+        <p>{rank}</p>
         <UserImg src={image} />
         <p>{name}</p>
       </div>
       <div className="flex gap-4 items-center  flex-wrap">
         <p>{score}</p>
-        <p>{badge}</p>
+        <Badge badge={badge} />
       </div>
     </div>
   );

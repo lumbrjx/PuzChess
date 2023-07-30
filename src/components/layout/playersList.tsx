@@ -17,6 +17,7 @@ const PlayersList = ({ players }: playersType) => {
       {players?.map((player, index: number) => (
         <div key={index}>
           <PlayerCard
+            rank={index + 1}
             name={player.name}
             badge={player.badge}
             score={player.score}

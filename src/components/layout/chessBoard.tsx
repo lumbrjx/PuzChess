@@ -42,6 +42,7 @@ const ChessBoard: FC<BoardType> = ({
   onSolve,
   gameStatus,
 }) => {
+  console.log(solution);
   //the last played piece position
   const [currentPosition, setCurrentposition] = useState<positionState>();
   //making the first move by the engine based on the solution rules =>

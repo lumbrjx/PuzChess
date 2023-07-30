@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-// fetching data using axios if no user is entered return null
+// sending score with game state to update it
 export const useUpdateScore = (email: string | null | undefined) => {
   async function mutateScore(info: object) {
     const mutate = await axios.patch(
       `http://localhost:3000/api/user/game?email=${email}`,
+      //the score and state object
       info
     );
 
