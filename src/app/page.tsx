@@ -2,8 +2,18 @@ import Button from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
+import { options } from "./api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
+import { getUser, getUserName } from "@/server/db/data/users/user";
+import { form } from "@/schemas/forms";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
+  const session = await getServerSession(options);
+  if (session) {
+    redirect("/play");
+  }
+
   return (
     <div className="text-[2.3rem] leading-tight md:text-largeFnt text-center lg:text-left md:pt-40 font-boldFnt text-clrFont pt-10 flex flex-col items-center w-full ">
       <div className="  flex px-2 md:ps-6 lg:px-[6rem] lg:pe-[2rem]  w-full md:justify-center md:gap-48 items-center flex-col-reverse lg:flex-row lg:items-start mb-64 ">

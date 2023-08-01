@@ -54,7 +54,7 @@ model User {
   id            String    @id @default(cuid())
   role          roles     @default(BASIC)
   name          String    @unique
-  chessElo      Int?
+  chessElo      String?   @default("600")
   badge         budges    @default(ROCKIE)
   email         String?   @unique
   emailVerified DateTime?

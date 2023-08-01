@@ -1,4 +1,5 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import UserCard from "@/components/layout/userCard";
 import { showUser } from "@/server/db/data/users/user";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -17,7 +18,8 @@ async function User({ params }: { params: { user: string }; user: any }) {
   console.log("player", thePlayer);
   return (
     <div className="pt-80 text-bigFnt text-white ">
-      <p>{thePlayer?.name}</p>
+      {/* <p>{thePlayer?.name}</p> */}
+      <UserCard  user={thePlayer} />
     </div>
   );
 }

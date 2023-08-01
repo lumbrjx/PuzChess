@@ -1,7 +1,11 @@
+"use client"
 import React, { FC } from "react";
 import UserImg from "../ui/userImg";
 import Button from "../ui/button";
 import DeleteModal from "./deleteModal";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Badge from "../ui/badge";
 // enum budges {
 //   "ROCKIE",
 //   "SILVER",
@@ -19,6 +23,10 @@ import DeleteModal from "./deleteModal";
 //   } | null;
 // };
 const ProfileCard = ({ user }: any) => {
+  const router = useRouter()
+  console.log(user)
+  
+
   return (
     <div
       className="text-mediumFnt bg-clrPrimaryBlack
@@ -30,25 +38,30 @@ const ProfileCard = ({ user }: any) => {
           <UserImg src={user?.image} />
           <h2>{user?.name}</h2>
         </div>
-        <div>{user?.badge}</div>
+        <div><Badge badge={user?.badge} /></div>
       </div>
       <div className="mb-10">
-        <p>Email : {user?.email}</p>
+        <p className="text-clrSecondaryGrey" >Email: {user?.email}</p>
         <p>Elo : {user?.chessElo}</p>
-        <p>Rank : later</p>
-        <p>played games : later</p>
+        <p className="text-clrSecondaryGrey" >Rank: {user?.score}</p>
+        <p className="text-clrSecondaryGrey" >Played games: later</p>
       </div>
       <div
         className="flex justify-between w-full 
       flex-wrap  gap-2"
       >
-        <Button
-          label="Edit profile"
-          style="Green"
-          additional="rounded-regBtn px-10 text-black"
-        />
+       
+        <Link
+            href={"/profile/edit"}
+            className="w-full max-w-[9rem] text-black bg-clrLayoutGreen shadow-btnDrop flex items-center gap-2 justify-center flex-wrap text-mediumFnt font-midFnt  py-1.5 px-5 rounded-regBtn"
+          >
+            Edit profile
+          </Link>
+          
+        
         <DeleteModal />
       </div>
+      
     </div>
   );
 };

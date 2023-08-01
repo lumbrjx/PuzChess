@@ -16,6 +16,9 @@ export default async function Profile() {
   return (
     <section className="flex flex-col gap-6 pt-[5rem] pb-[12rem] md:px-36 ">
       {session?.user && <ProfileCard user={theUser} />}
+      <div>
+      <p className="text-smallFnt text-clrSecondaryGrey" >refresh the page to see the changes</p>
+      </div>
     </section>
   );
 }
