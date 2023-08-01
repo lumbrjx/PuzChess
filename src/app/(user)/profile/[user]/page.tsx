@@ -4,7 +4,7 @@ import { showUser } from "@/server/db/data/users/user";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-async function User({ params }: { params: { user: string }; user: any }) {
+async function User({ params }: { params: { user: string } }) {
   // console.log(params.user.replace(/[0-9]|%20/g, " "));
   let thePlayer;
   const session = await getServerSession(options);
