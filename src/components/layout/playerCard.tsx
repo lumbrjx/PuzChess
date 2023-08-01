@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Badge from "../ui/badge";
 import UserImg from "../ui/userImg";
 
@@ -11,8 +12,9 @@ type playerType = {
 
 const PlayerCard = ({ name, badge, score, image, rank }: playerType) => {
   return (
-    <div
-      className="py-6 px-6 border border-1 border-clrSecondaryGrey 
+    <Link
+      href={`/profile/${name}`}
+      className="py-6 px-6 border border-1 cursor-pointer border-clrSecondaryGrey 
     flex flex-wrap w-full justify-between max-w-[30rem]
      rounded-2xl text-mediumFnt mb-4 gap-2"
     >
@@ -25,7 +27,7 @@ const PlayerCard = ({ name, badge, score, image, rank }: playerType) => {
         <p>{score}</p>
         <Badge badge={badge} />
       </div>
-    </div>
+    </Link>
   );
 };
 

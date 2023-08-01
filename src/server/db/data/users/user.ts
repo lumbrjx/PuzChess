@@ -44,7 +44,7 @@ export const getAuthUser = async (email: string) => {
 
   return authUser;
 };
-export const getUser = async (email: string) => {
+export const getUser = async (email: string | any) => {
   const theUser = await prisma.user.findFirst({
     where: {
       email: email,
@@ -55,9 +55,37 @@ export const getUser = async (email: string) => {
       chessElo: true,
       email: true,
       image: true,
+      score : true,
     },
   });
 
+  return theUser;
+};
+export const getUserName = async (email: string | any) => {
+  const theUser = await prisma.user.findFirst({
+    where: {
+      email: email,
+    },
+    select: {
+      name: true,
+    },
+  });
+
+  return theUser;
+};
+export const showUser = async (name: string) => {
+  const theUser = await prisma.user.findFirst({
+    where: {
+      name: name,
+    },
+    select: {
+      name: true,
+      badge: true,
+      chessElo: true,
+      image: true,
+    },
+  });
+  console.log(theUser);
   return theUser;
 };
 export const getPlayers = async () => {
