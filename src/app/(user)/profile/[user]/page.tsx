@@ -4,7 +4,7 @@ import { showUser } from "@/server/db/data/users/user";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-async function User({ params }: { params: { user: string }; user: any }) {
+async function User({ params }: { params: { user: string } }) {
   // console.log(params.user.replace(/[0-9]|%20/g, " "));
   let thePlayer;
   const session = await getServerSession(options);
@@ -19,7 +19,7 @@ async function User({ params }: { params: { user: string }; user: any }) {
   return (
     <div className="pt-80 text-bigFnt text-white ">
       {/* <p>{thePlayer?.name}</p> */}
-      <UserCard  user={thePlayer} />
+      <UserCard user={thePlayer} />
     </div>
   );
 }
