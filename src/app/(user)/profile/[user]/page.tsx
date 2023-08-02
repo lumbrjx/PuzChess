@@ -19,7 +19,7 @@ async function User({ params }: { params: { user: string } }) {
   return (
     <div className="pt-80 text-bigFnt text-white ">
       {/* <p>{thePlayer?.name}</p> */}
-      <UserCard  user={thePlayer} />
+      <UserCard user={thePlayer} />
     </div>
   );
 }
