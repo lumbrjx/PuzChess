@@ -11,11 +11,10 @@ export async function PATCH(req: NextRequest) {
       { status: 400 }
     );
   }
-  console.log(chessElo)
 
   try {
     const parsed = formReg.parse({ username, chessElo });
-    console.log(parsed.chessElo)
+    console.log(parsed.chessElo);
     await prisma.user.update({
       where: {
         email,
