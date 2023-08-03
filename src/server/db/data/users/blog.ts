@@ -6,3 +6,8 @@ export const getBlogs = async () => {
 
   return blogs;
 };
+export const bLogsLenght = async () => {
+  const blog = await prisma.blog.count();
+
+  return blog;
+};

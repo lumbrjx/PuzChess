@@ -118,3 +118,8 @@ export const deleteUser = async (email: string) => {
 
   return deleteUser;
 };
+export const usersLenght = async () => {
+  const User = await prisma.user.count();
+
+  return User;
+};
