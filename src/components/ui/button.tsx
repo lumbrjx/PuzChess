@@ -7,7 +7,7 @@ interface Btn {
   onClick?: () => any;
   asset?: boolean;
   asset_type?: "Google";
-  disable?: true;
+  disable?: boolean;
 }
 
 const Button = ({
@@ -34,7 +34,7 @@ const Button = ({
         ? "border-clrSecondaryGrey border-2"
         : ""
     }
-    text-mediumFnt font-midFnt  py-1.5 px-5 ${
+    text-mediumFnt font-midFnt  py-1 px-5 ${
       asset && "flex items-center gap-2 justify-center flex-wrap"
     } ${additional}`}
       >
