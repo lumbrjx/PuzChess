@@ -69,7 +69,7 @@ model User {
 model Blog {
   id     String @id @default(cuid())
   title  String
-  body   String
+  body   String @db.LongText
   author String
 }
 

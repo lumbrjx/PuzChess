@@ -1,0 +1,21 @@
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+// sending score with game state to update it
+export const useAddBlog = () => {
+  async function mutateBlog(info: object) {
+    const mutate = await axios.post(
+      `http://localhost:3000/api/dashboard/blog`,
+      //the score and state object
+      info
+    );
+
+    return mutate;
+  }
+  const { mutate, isSuccess } = useMutation(mutateBlog);
+
+  try {
+    return { mutate, isSuccess } as any;
+  } catch (error) {
+    return null;
+  }
+};
