@@ -1,4 +1,4 @@
-import { getAuthUser } from "@/server/db/data/users/user";
+import { getAuthUser, usersLenght } from "@/server/db/data/users/user";
 import { options } from "../../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 
@@ -6,10 +6,12 @@ import { redirect } from "next/navigation";
 import Stats from "@/components/ui/stats";
 import Link from "next/link";
 import BlogForm from "@/components/layout/blogForm";
+import { bLogsLenght } from "@/server/db/data/users/blog";
 
 export default async function Dashboard() {
   const session = await getServerSession(options);
-
+  let blg;
+  let usr;
   if (!session) {
     redirect("/auth/signin?callbackUrl=/dashboard");
   }
@@ -18,13 +20,17 @@ export default async function Dashboard() {
     if (authUser?.role !== "ADMIN") {
       redirect("/denied");
     }
+    const blCount = await bLogsLenght();
+    blg = blCount;
+    const usCount = await usersLenght();
+    usr = usCount;
   }
 
   return (
     <section className="flex flex-wrap gap-16 pt-[8rem] w-full items-center justify-center pb-[12rem] md:ps-4 md:pe-16 ">
       {/* more stuff later */}
       <div className="w-full max-w-[24rem] mt-4 flex flex-col  items-center lg:items-start ">
-        <Stats />
+        <Stats blg={blg} usr={usr} />
         <Link
           href={"/dashboard/blogs"}
           className="text-clrSecondaryGrey text-smallFnt underline mt-6 ms-2"
