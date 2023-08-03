@@ -54,7 +54,6 @@ const ProfileCard = ({ user }: any) => {
         <p className="text-clrSecondaryGrey">Email: {user?.email}</p>
         <p>Elo : {user?.chessElo}</p>
         <p className="text-clrSecondaryGrey">Rank: {user?.score}</p>
-        <p className="text-clrSecondaryGrey">Played games: later</p>
       </div>
       <div
         className="flex justify-between w-full 
@@ -67,7 +66,7 @@ const ProfileCard = ({ user }: any) => {
           Edit profile
         </Link>
 
-        <DeleteModal />
+        <DeleteModal email={user?.email} />
       </div>
     </div>
   );
