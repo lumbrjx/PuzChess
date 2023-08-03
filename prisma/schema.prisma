@@ -60,20 +60,20 @@ model User {
   emailVerified DateTime?
   image         String?
   score         Int       @default(600)
-  followedBy    Follows[] @relation("following")
-  following     Follows[] @relation("follower")
+  followedBy    User[]    @relation("friends")
+  following     User[]    @relation("friends")
   accounts      Account[]
   sessions      Session[]
 }
 
-model Follows {
-  follower    User   @relation("follower", fields: [followerId], references: [id])
-  followerId  String
-  following   User   @relation("following", fields: [followingId], references: [id])
-  followingId String
+// model Follows {
+//   follower    User   @relation("follower", fields: [followerId], references: [id])
+//   followerId  String
+//   following   User   @relation("following", fields: [followingId], references: [id])
+//   followingId String
 
-  @@id([followerId, followingId])
-}
+//   @@id([followerId, followingId])
+// }
 
 model VerificationToken {
   identifier String

@@ -12,12 +12,13 @@ async function User({ params }: { params: { user: string } }) {
     redirect("/auth/signin?callbackUrl=/dashboard");
   }
   if (session) {
-    const player = await showUser(params?.user);
+    const player = await showUser(params?.user, session?.user?.email);
     thePlayer = player;
+    console.log("passed boy", thePlayer);
   }
-  console.log("player", thePlayer);
+
   return (
-    <div className="pt-80 text-bigFnt text-white ">
+    <div className="pt-[10rem] w-full flex justify-center  pb-[12rem] md:px-24  ">
       {/* <p>{thePlayer?.name}</p> */}
       <UserCard user={thePlayer} />
     </div>
