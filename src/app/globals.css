@@ -23,6 +23,7 @@ body {
 /* Track */
 ::-webkit-scrollbar-track {
   background: hsl(var(--clr-primary-black));
+  border-radius: 80px;
 }
 
 /* Handle */
