@@ -66,14 +66,12 @@ model User {
   sessions      Session[]
 }
 
-// model Follows {
-//   follower    User   @relation("follower", fields: [followerId], references: [id])
-//   followerId  String
-//   following   User   @relation("following", fields: [followingId], references: [id])
-//   followingId String
-
-//   @@id([followerId, followingId])
-// }
+model Blog {
+  id     String @id @default(cuid())
+  title  String
+  body   String
+  author String
+}
 
 model VerificationToken {
   identifier String
