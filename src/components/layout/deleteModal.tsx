@@ -1,9 +1,13 @@
 "use client";
 import { useState } from "react";
 import Button from "../ui/button";
+import { useRemUser } from "@/lib/hooks/mutate/deleteUser";
+import { useRouter } from "next/navigation";
 
-const DeleteModal = () => {
+const DeleteModal = ({ email }: { email: string }) => {
   const [show, setShow] = useState(false);
+  const { mutate } = useRemUser();
+  const router = useRouter();
   return (
     <>
       <Button
@@ -25,7 +29,10 @@ const DeleteModal = () => {
               label="Delete"
               style="Transparent"
               additional="text-smallFnt rounded-regBtn"
-              onClick={() => setShow(false)}
+              onClick={() => {
+                mutate({ email: email });
+                router.push("/");
+              }}
             />
             <Button
               label="Cancel"

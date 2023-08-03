@@ -107,3 +107,14 @@ export const getPlayers = async () => {
 
   return topPlayers;
 };
+export const deleteUser = async (email: string) => {
+  const deleteUser = await prisma.user.deleteMany({
+    where: {
+      email: {
+        contains: email,
+      },
+    },
+  });
+
+  return deleteUser;
+};
