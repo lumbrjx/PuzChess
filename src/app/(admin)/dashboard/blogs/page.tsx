@@ -8,7 +8,7 @@ import BlogsList from "@/components/layout/blogsList";
 
 export default async function Dashboard() {
   const session = await getServerSession(options);
-  let theblogs;
+
   if (!session) {
     redirect("/auth/signin?callbackUrl=/dashboard");
   }
@@ -17,16 +17,12 @@ export default async function Dashboard() {
     if (authUser?.role !== "ADMIN") {
       redirect("/denied");
     }
-    if (session) {
-      const blogs = await getBlogs();
-      theblogs = blogs;
-    }
   }
 
   return (
     <section className="flex flex-col gap-6 p-20">
       {/* more stuff later */}
-      <BlogsList blogs={theblogs} />
+      <BlogsList />
     </section>
   );
 }
