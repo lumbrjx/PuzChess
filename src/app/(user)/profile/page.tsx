@@ -10,7 +10,7 @@ export default async function Profile() {
   const session = await getServerSession(options);
 
   if (!session) {
-    redirect("/auth/signin?callbackUrl=/dashboard");
+    redirect("/auth/signin?callbackUrl=/play");
   }
   const theUser = await getUser(session?.user?.email as string);
 

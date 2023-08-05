@@ -6,11 +6,11 @@ import { redirect } from "next/navigation";
 
 import BlogsList from "@/components/layout/blogsList";
 
-export default async function Dashboard() {
+export default async function Blogs() {
   const session = await getServerSession(options);
 
   if (!session) {
-    redirect("/auth/signin?callbackUrl=/dashboard");
+    redirect("/auth/signin?callbackUrl=/play");
   }
   if (session) {
     const authUser = await getAuthUser(session.user?.email as string);
@@ -21,7 +21,6 @@ export default async function Dashboard() {
 
   return (
     <section className="flex flex-col items-center justify-center w-full  lg:px-8 px-2 p-36">
-      {/* more stuff later */}
       <BlogsList />
     </section>
   );

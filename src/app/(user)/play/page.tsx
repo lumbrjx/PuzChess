@@ -1,4 +1,3 @@
-import ProfileCard from "@/components/layout/profileCard";
 import { options } from "../../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 

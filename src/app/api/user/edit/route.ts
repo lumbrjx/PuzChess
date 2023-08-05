@@ -1,8 +1,15 @@
-import { form, formReg } from "@/schemas/forms";
+import { formReg } from "@/schemas/forms";
 import prisma from "@/server/db/seed";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import { options } from "../../auth/[...nextauth]/options";
 
 export async function PATCH(req: NextRequest) {
+  const session = await getServerSession(options);
+
+  if (!session) {
+    return NextResponse.json({ message: "unauthenticated" }, { status: 401 });
+  }
   const email = req.nextUrl.searchParams.get("email") as string;
   const { username, chessElo } = await req.json();
   if (!username || !email || !chessElo) {
@@ -14,7 +21,7 @@ export async function PATCH(req: NextRequest) {
 
   try {
     const parsed = formReg.parse({ username, chessElo });
-    console.log(parsed.chessElo);
+
     await prisma.user.update({
       where: {
         email,
@@ -27,7 +34,6 @@ export async function PATCH(req: NextRequest) {
 
     return NextResponse.json("updated!");
   } catch (error) {
-    console.log(error);
     return NextResponse.json("error check server");
   }
 }

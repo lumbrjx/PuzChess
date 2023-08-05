@@ -17,7 +17,6 @@ const BlogForm = () => {
     resolver: zodResolver(blogForm),
   });
   const submitForm = (data: blogSchema) => {
-    console.log(data);
     mutate(data);
   };
   return (
@@ -32,7 +31,6 @@ const BlogForm = () => {
              focus:outline-none"
           type="text"
           placeholder="Author"
-          // onChange={(e) => (usernamee.current = e.target.value)}
           {...register("author")}
         />
         <input
@@ -41,7 +39,6 @@ const BlogForm = () => {
              focus:outline-none"
           type="text"
           placeholder="Title"
-          // onChange={(e) => (usernamee.current = e.target.value)}
           {...register("title")}
         />
       </div>
@@ -51,7 +48,6 @@ const BlogForm = () => {
              border-clrSecondaryGrey  focus:border-clrLayoutGreen 
              focus:outline-none"
           placeholder="Title"
-          // onChange={(e) => (usernamee.current = e.target.value)}
           {...register("body")}
         />
       </div>

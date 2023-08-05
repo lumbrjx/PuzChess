@@ -35,7 +35,6 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json("blog added");
   } catch (error) {
-    console.error(error);
     return NextResponse.json(error);
   }
 }

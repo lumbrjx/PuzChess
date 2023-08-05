@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import UserImg from "../ui/userImg";
 import Button from "../ui/button";
 import Badge from "../ui/badge";
-import { useUpdateUser } from "@/lib/hooks/mutate/updateProfile";
+
 import { useSession } from "next-auth/react";
 import { useAddFriend } from "@/lib/hooks/mutate/addFriend";
 import { useRemFriend } from "@/lib/hooks/mutate/removeFriend";
@@ -11,8 +11,8 @@ import { useRemFriend } from "@/lib/hooks/mutate/removeFriend";
 function UserCard({ user }: { user: any }) {
   const [follower, setFollwer] = useState(false);
   const { data: session } = useSession();
-  const { mutate, isSuccess } = useAddFriend(session?.user?.email);
-  const { mutate: rem, isSuccess: isdone } = useRemFriend(session?.user?.email);
+  const { mutate } = useAddFriend(session?.user?.email);
+  const { mutate: rem } = useRemFriend(session?.user?.email);
 
   useEffect(() => {
     if (user.followedBy.length !== 0) {

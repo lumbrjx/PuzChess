@@ -1,9 +1,16 @@
 "use client";
 
 import { ShortMove } from "chess.js";
-import Chessboard from "chessboardjsx";
-import React, { FC, useEffect, useState } from "react";
 
+import React, { FC, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const Chessboard = dynamic(
+  () => {
+    return import("chessboardjsx");
+  },
+  { ssr: false }
+);
 import { validateMv } from "../../lib/utils/chess";
 import convertStringToObject from "@/lib/utils/stringParser";
 import objectSlicer from "@/lib/utils/objectSlicer";
@@ -42,7 +49,6 @@ const ChessBoard: FC<BoardType> = ({
   onSolve,
   gameStatus,
 }) => {
-  console.log(solution);
   //the last played piece position
   const [currentPosition, setCurrentposition] = useState<positionState>();
   //making the first move by the engine based on the solution rules =>
@@ -110,27 +116,31 @@ const ChessBoard: FC<BoardType> = ({
   }
 
   return (
-    <Chessboard
-      transitionDuration={200}
-      orientation={orientation}
-      dropSquareStyle={{ backgroundColor: "sienna" }}
-      draggable={gameStatus === "WIN" ? false : true}
-      position={fen}
-      width={width}
-      boardStyle={{
-        borderRadius: "100px",
-      }}
-      onDrop={(move) => {
-        doMove({
-          from: move.sourceSquare,
-          to: move.targetSquare,
-          promotion: "q",
-        });
-      }}
-      squareStyles={squareStyles}
-      lightSquareStyle={{ backgroundColor: "#F1F1F1" }}
-      darkSquareStyle={{ backgroundColor: "#6D9D4C" }}
-    />
+    <div>
+      {typeof window !== undefined && (
+        <Chessboard
+          transitionDuration={200}
+          orientation={orientation}
+          dropSquareStyle={{ backgroundColor: "sienna" }}
+          draggable={gameStatus === "WIN" ? false : true}
+          position={fen}
+          width={width}
+          boardStyle={{
+            borderRadius: "100px",
+          }}
+          onDrop={(move) => {
+            doMove({
+              from: move.sourceSquare,
+              to: move.targetSquare,
+              promotion: "q",
+            });
+          }}
+          squareStyles={squareStyles}
+          lightSquareStyle={{ backgroundColor: "#F1F1F1" }}
+          darkSquareStyle={{ backgroundColor: "#6D9D4C" }}
+        />
+      )}
+    </div>
   );
 };
 

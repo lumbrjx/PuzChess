@@ -20,11 +20,8 @@ export default function UploadButtonPage() {
           if (res) {
             router.push("/profile");
           }
-
-          //alert("Upload Completed");
         }}
         onUploadError={(error: Error) => {
-          // Do something with the error.
           console.log(`ERROR! ${error.message}`);
         }}
       />

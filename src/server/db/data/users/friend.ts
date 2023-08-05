@@ -1,5 +1,5 @@
 import prisma from "@/server/db/seed";
-import { Prisma } from "@prisma/client";
+
 export async function addFriend(email: string, friendId: any) {
   const userid = await prisma.user.findUnique({
     where: {
@@ -71,7 +71,6 @@ export async function RemFriend(email: string, friendId: any) {
     },
   });
 
-  console.log("heeheheeheheheh", friendid, userid);
   const user = await prisma.user.update({
     where: {
       id: userid?.id as any,

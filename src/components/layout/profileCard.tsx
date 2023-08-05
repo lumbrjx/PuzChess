@@ -1,32 +1,12 @@
 "use client";
-import React, { FC, useState } from "react";
+import React from "react";
 import UserImg from "../ui/userImg";
-import Button from "../ui/button";
+
 import DeleteModal from "./deleteModal";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import Badge from "../ui/badge";
-import { UploadButton } from "@uploadthing/react";
 
-import { OurFileRouter } from "../../app/api/uploadthing/core";
-// import { useUploadThing } from "@/lib/utils/uploadthing";
-// import { UploadButton } from "@/lib/utils/uploader";
-// enum budges {
-//   "ROCKIE",
-//   "SILVER",
-//   "GOLDEN",
-//   "DIAMOND",
-//   "PLATINIUM",
-// }
-// type userType = {
-//   user: {
-//     name: string;
-//     badge: budges;
-//     chessElo: number | null;
-//     email: string | null;
-//     image: string | null;
-//   } | null;
-// };
+import Badge from "../ui/badge";
+
 const ProfileCard = ({ user }: any) => {
   return (
     <div

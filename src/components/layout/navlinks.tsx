@@ -1,10 +1,10 @@
 "use client";
 
 import { HiMenu } from "react-icons/hi";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetchUser } from "@/lib/hooks/query/fetchUser";
 import UserImg from "../ui/userImg";
 import "../../app/globals.css";
@@ -23,7 +23,7 @@ const Navlinks = () => {
   return (
     <>
       <nav
-        className={` md:items-center gap-6 absolute flex-wrap
+        className={` md:items-center gap-6 absolute flex-wrap 
          z-20 w-full bg-base-100 py-20 pb-24 rounded-b-2xl h-screen md:h-auto  md:py-0  md:w-auto 
           flex flex-col items-center md:justify-center 
           md:gap-10 top-0 right-0 md:flex-row md:static
@@ -32,7 +32,7 @@ const Navlinks = () => {
         {user?.role === "ADMIN" && (
           <Link
             href="/dashboard"
-            className=" "
+            className=" hover:text-clrSecondaryGrey"
             onClick={() => {
               setToggle(false);
             }}
@@ -43,7 +43,7 @@ const Navlinks = () => {
         {session?.user && (
           <Link
             href="/play"
-            className="    "
+            className=" hover:text-clrSecondaryGrey   "
             onClick={() => {
               setToggle(false);
             }}
@@ -53,7 +53,7 @@ const Navlinks = () => {
         )}
         <Link
           href="/Blog"
-          className="  "
+          className=" hover:text-clrSecondaryGrey "
           onClick={() => {
             setToggle(false);
           }}
@@ -66,9 +66,8 @@ const Navlinks = () => {
             prefetch={true}
             onClick={() => {
               setToggle(false);
-              // setToggleLogin(true);
             }}
-            className="py-1.5  px-7 border-2 border-clrLayoutGreen rounded-regBtn "
+            className="py-1.5 hover:text-clrSecondaryGrey px-7 border-2 border-clrLayoutGreen rounded-regBtn "
           >
             Sign in
           </Link>
@@ -76,7 +75,7 @@ const Navlinks = () => {
           <>
             <Link
               href="/leaderboard"
-              className="    "
+              className="  hover:text-clrSecondaryGrey  "
               onClick={() => {
                 setToggle(false);
               }}
@@ -98,7 +97,6 @@ const Navlinks = () => {
                   <Link
                     onClick={() => {
                       setToggle(false);
-                      // setOpen(false);
                     }}
                     href="/profile"
                   >
@@ -106,15 +104,15 @@ const Navlinks = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
+                  <button
                     onClick={() => {
                       setToggle(false);
-                      // setOpen(false);
+
+                      signOut({ callbackUrl: "/" });
                     }}
-                    href="/api/auth/signout"
                   >
-                    Sign Out
-                  </Link>
+                    Sign out
+                  </button>
                 </li>
               </ul>
             </div>
