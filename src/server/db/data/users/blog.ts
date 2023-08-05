@@ -1,8 +1,12 @@
 import prisma from "@/server/db/seed";
 import { Prisma } from "@prisma/client";
 
-export const getBlogs = async () => {
-  const blogs = await prisma.blog.findMany();
+export const getBlog = async (id: string) => {
+  const blogs = await prisma.blog.findFirst({
+    where: {
+      id: id,
+    },
+  });
 
   return blogs;
 };

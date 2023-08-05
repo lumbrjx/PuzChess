@@ -3,7 +3,7 @@ import { options } from "../../../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 
 import { redirect } from "next/navigation";
-import { getBlogs } from "@/server/db/data/users/blog";
+
 import BlogsList from "@/components/layout/blogsList";
 
 export default async function Dashboard() {
@@ -20,7 +20,7 @@ export default async function Dashboard() {
   }
 
   return (
-    <section className="flex flex-col gap-6 p-20">
+    <section className="flex flex-col items-center justify-center w-full  lg:px-8 px-2 p-36">
       {/* more stuff later */}
       <BlogsList />
     </section>

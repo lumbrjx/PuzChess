@@ -13,9 +13,7 @@ function UserCard({ user }: { user: any }) {
   const { data: session } = useSession();
   const { mutate, isSuccess } = useAddFriend(session?.user?.email);
   const { mutate: rem, isSuccess: isdone } = useRemFriend(session?.user?.email);
-  console.log("coming user", user?.name);
-  console.log("our user", session?.user?.name);
-  console.log(follower);
+
   useEffect(() => {
     if (user.followedBy.length !== 0) {
       if (user.followedBy[0].name === session?.user?.name) {

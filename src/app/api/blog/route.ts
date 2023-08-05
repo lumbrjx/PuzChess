@@ -4,11 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { options } from "../auth/[...nextauth]/options";
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(options);
-
-  if (!session) {
-    return NextResponse.json({ message: "unauthenticated" }, { status: 401 });
-  }
   const take = 4;
   const cursorQuery =
     (req.nextUrl.searchParams.get("cursor") as string) ?? undefined;

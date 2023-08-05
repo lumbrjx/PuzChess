@@ -6,7 +6,8 @@ import axios from "axios";
 import useInfiniteScroll from "@/lib/hooks/scroll/infiniteScroll";
 import { useEffect, useState } from "react";
 import hasKey from "@/lib/utils/keyCheck";
-const BlogsList = () => {
+import FrontBlog from "./frontBlog";
+const FrontBlogsList = () => {
   const [cursor, setCursor] = useState("");
   const [blog, setBlog] = useState<any>([{}]);
 
@@ -23,15 +24,14 @@ const BlogsList = () => {
 
   return (
     <>
-      <div className="w-full  grid max-w-[1440px] md:grid-cols-2  lg:grid-cols-3 gap-4 mb-4">
+      <div className="w-full max-w-[1440px] grid  md:grid-cols-2  lg:grid-cols-3 gap-4 ">
         {blog &&
           blog.map((blog: any, index: number) =>
             hasKey(blog, "author") ? (
               <div key={index}>
-                <BackBlog
+                <FrontBlog
                   author={blog.author}
                   title={blog.title}
-                  body={blog.body}
                   id={blog.id}
                 />
               </div>
@@ -45,4 +45,4 @@ const BlogsList = () => {
   );
 };
 
-export default BlogsList;
+export default FrontBlogsList;
