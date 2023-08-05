@@ -1,17 +1,15 @@
 "use client";
-import Link from "next/link";
-import BackBlog from "./backBlog";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import useInfiniteScroll from "@/lib/hooks/scroll/infiniteScroll";
 import { useEffect, useState } from "react";
 import hasKey from "@/lib/utils/keyCheck";
 import FrontBlog from "./frontBlog";
+import Image from "next/image";
 const FrontBlogsList = () => {
   const [cursor, setCursor] = useState("");
   const [blog, setBlog] = useState<any>([{}]);
 
-  const { data, refetch } = useInfiniteScroll(cursor);
+  const { data, refetch, isFetching } = useInfiniteScroll(cursor);
   useEffect(() => {
     if (data) {
       setCursor(data.nextId);
@@ -19,7 +17,15 @@ const FrontBlogsList = () => {
     }
   }, [data]);
   if (!data) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="py-48 w-full h-full flex-col text-clrFont text-center items-center justify-center   z-50 top-0 bg-header px-2 md:ps-4 font-boldFnt text-bigFnt md:text-largeFnt 
+  flex  
+  -8 gap-8 "
+      >
+        <Image alt="logo" src={"/Logo.svg"} width={60} height={60} priority />
+      </div>
+    );
   }
 
   return (
@@ -40,7 +46,11 @@ const FrontBlogsList = () => {
             )
           )}
       </div>
-      {data && <button onClick={refetch}>Load More</button>}
+      {data && (
+        <button onClick={refetch} disabled={isFetching}>
+          {isFetching === true ? "Loading" : "Load More"}{" "}
+        </button>
+      )}
     </>
   );
 };

@@ -6,9 +6,8 @@ type BlogType = {
   id: string;
   author: string;
   title: string;
-  body: string;
 };
-const BackBlog = ({ author, title, body, id }: BlogType) => {
+const BackBlog = ({ author, title, id }: BlogType) => {
   const { mutate } = useDelBlog();
   return (
     <div

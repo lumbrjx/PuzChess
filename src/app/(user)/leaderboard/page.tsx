@@ -1,4 +1,3 @@
-import PlayerCard from "@/components/layout/playerCard";
 import { options } from "../../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 
@@ -10,7 +9,7 @@ export default async function Leaderboard() {
   const session = await getServerSession(options);
   let topPlayerss;
   if (!session) {
-    redirect("/auth/signin?callbackUrl=/dashboard");
+    redirect("/auth/signin?callbackUrl=/play");
   }
   if (session) {
     const topPlayers = await getPlayers();
@@ -18,7 +17,7 @@ export default async function Leaderboard() {
   }
 
   return (
-    <section className="py-28 flex flex-col   px-4  lg:px-40  w-full">
+    <section className="py-28 mb-48 flex flex-col   px-4  lg:px-40  w-full">
       <p className="md:text-largeFnt text-[2.3rem]  font-boldFnt text-center md:text-left mb-10">
         Leaderboard
       </p>

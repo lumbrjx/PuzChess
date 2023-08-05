@@ -3,19 +3,17 @@
 import Button from "@/components/ui/button";
 
 import { formReg, formSchema } from "@/schemas/forms";
-import { useRouter } from 'next/navigation'
-import Image from "next/image";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useRef } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useUpdateUser } from "@/lib/hooks/mutate/updateProfile";
 import { useSession } from "next-auth/react";
 
 const SignIn = () => {
   const { data: session } = useSession();
-  const router = useRouter()
+  const router = useRouter();
   const { mutate, isSuccess } = useUpdateUser(session?.user?.email);
   const {
     register,
@@ -25,12 +23,9 @@ const SignIn = () => {
     resolver: zodResolver(formReg),
   });
   const submitForm = (data: formSchema) => {
-    
     mutate(data);
     {
-      isSuccess && 
-      
-      router.push("/play")
+      isSuccess && router.push("/play");
     }
   };
 
@@ -52,7 +47,6 @@ const SignIn = () => {
              focus:outline-none"
             type="text"
             placeholder="Username"
-            // onChange={(e) => (usernamee.current = e.target.value)}
             {...register("username")}
           />
           <input
@@ -61,7 +55,6 @@ const SignIn = () => {
              focus:outline-none"
             type="text"
             placeholder="Chess elo"
-            // onChange={(e) => (pass.current = e.target.value)}
             {...register("chessElo")}
           />
         </div>

@@ -1,11 +1,8 @@
-import Button from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import { options } from "./api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth";
-import { getUser, getUserName } from "@/server/db/data/users/user";
-import { form } from "@/schemas/forms";
 import { redirect } from "next/navigation";
 
 export default async function Home() {

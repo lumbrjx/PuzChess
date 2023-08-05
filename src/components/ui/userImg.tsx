@@ -6,7 +6,6 @@ type srcType = {
 const UserImg: FC<srcType> = ({ src }) => {
   return (
     <div className="h-[35px] w-[35px]">
-      {/* <img src={src} alt="" srcset="" /> */}
       <Image
         alt={"user-profile"}
         src={`${src}`}
@@ -18,7 +17,7 @@ const UserImg: FC<srcType> = ({ src }) => {
           objectFit: "cover",
           height: "35px",
           width: "35px",
-          // backgroundSize: "cover",
+
           borderRadius: "80px",
         }}
       />

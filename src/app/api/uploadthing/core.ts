@@ -8,7 +8,6 @@ import { getSession } from "next-auth/react";
 
 const f = createUploadthing();
 async function redReq() {
-  // const session = getSession({ req });
   const session = await getServerSession(options);
   if (!session) {
     throw new Error("Unauthorized");

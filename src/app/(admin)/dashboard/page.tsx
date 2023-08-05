@@ -13,7 +13,7 @@ export default async function Dashboard() {
   let blg;
   let usr;
   if (!session) {
-    redirect("/auth/signin?callbackUrl=/dashboard");
+    redirect("/auth/signin?callbackUrl=/play");
   }
   if (session) {
     const authUser = await getAuthUser(session.user?.email as string);
@@ -28,7 +28,6 @@ export default async function Dashboard() {
 
   return (
     <section className="flex flex-wrap gap-16 pt-[8rem] w-full items-center justify-center pb-[12rem] md:ps-4 md:pe-16 ">
-      {/* more stuff later */}
       <div className="w-full max-w-[24rem] mt-4 flex flex-col  items-center lg:items-start ">
         <Stats blg={blg} usr={usr} />
         <Link
