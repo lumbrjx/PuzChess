@@ -1,5 +1,6 @@
 import Image from "next/image";
-
+// import { motion } from "framer-motion";
+// import { customAnimation } from "@/lib/hooks/animation/animations";
 interface Btn {
   label: string;
   readonly style: "Green" | "Grey" | "Transparent";
@@ -19,9 +20,13 @@ const Button = ({
   asset,
   asset_type,
 }: Btn) => {
+  // const { ButtonAnimation } = customAnimation();
   return (
     <>
       <button
+        // variants={ButtonAnimation}
+        // initial={ButtonAnimation.initial}
+        // whileHover={ButtonAnimation.inInitial}
         onClick={onClick}
         disabled={disable ? true : false}
         className={`
