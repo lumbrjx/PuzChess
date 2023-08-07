@@ -51,6 +51,7 @@ const ChessBoard: FC<BoardType> = ({
 }) => {
   //the last played piece position
   const [currentPosition, setCurrentposition] = useState<positionState>();
+  document.body.style.overflow = "hidden";
   //making the first move by the engine based on the solution rules =>
   //*always the opposite side make the first move*
   useEffect(() => {

@@ -31,7 +31,7 @@ const DeleteModal = ({ email }: { email: string }) => {
               additional="text-smallFnt rounded-regBtn"
               onClick={() => {
                 mutate({ email: email });
-                router.push("/");
+                router.refresh();
               }}
             />
             <Button

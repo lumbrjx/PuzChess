@@ -1,10 +1,15 @@
 "use client";
 
 import Button from "@/components/ui/button";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const SignIn = () => {
+  const { data: session } = useSession();
+  if (session) {
+    redirect("/play");
+  }
   return (
     <div className="text-clrFont text-smallFnt pt-[12rem] pb-[12rem]">
       <div className="bg-signbg p-10 flex m-auto flex-col w-full max-w-[27.8rem] gap-8 items-center rounded-form ">

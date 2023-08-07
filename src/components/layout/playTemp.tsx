@@ -16,10 +16,9 @@ type setGame = {
   };
 };
 const PlayTemp: FC<setGame> = ({ setGame, user }) => {
-  const { HeroAnimation, sectionAnimation, section2Animation } =
-    customAnimation();
+  const { HeroAnimation } = customAnimation();
   return (
-    <div className="py-44 flex px-10  lg:px-40 justify-around  items-center w-full  ">
+    <div className="py-56 flex px-10  lg:px-40 justify-around  items-center w-full  ">
       <div className="flex w-auto gap-12 flex-col items-start">
         <div className="flex  flex-col md:items-start items-center">
           <motion.h2
