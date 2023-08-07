@@ -5,7 +5,7 @@ import axios from "axios";
 const useInfiniteScroll = (cursor: string | undefined) => {
   async function fetchBlogs() {
     const { data } = await axios.get(
-      `http://localhost:3000/api/blog?cursor=${cursor}`
+      `https://puzchess.vercel.app/api/blog?cursor=${cursor}`
     );
     return data;
   }
