@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export const useFetchUser = (email: string | null | undefined) => {
   async function queryUser() {
     const { data } = await axios.get(
-      `http://localhost:3000/api/user?email=${email}`
+      `https://puzchess.vercel.app/api/user?email=${email}`
     );
     return data;
   }

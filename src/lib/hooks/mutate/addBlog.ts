@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 export const useAddBlog = () => {
   async function mutateBlog(info: object) {
     const mutate = await axios.post(
-      `http://localhost:3000/api/dashboard/blog`,
+      `https://puzchess.vercel.app/api/dashboard/blog`,
       //the score and state object
       info
     );
