@@ -92,13 +92,12 @@ export const customAnimation = () => {
   };
   const loadingAnimation = {
     initial: {
-      opacity: 0,
       y: 20,
+      scale: 1,
     },
     inInitial: {
-      opacity: 1,
-      scale: 1.1,
-      y: 0,
+      scale: [1, 1.1, 1],
+      y: [20, 0, 20],
     },
   };
   return {
