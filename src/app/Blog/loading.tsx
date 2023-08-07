@@ -5,6 +5,7 @@ import { customAnimation } from "@/lib/hooks/animation/animations";
 
 export default function Loading() {
   const { loadingAnimation } = customAnimation();
+  document.body.style.overflow = "hidden";
   return (
     <div
       className="py-96 absolute bg-header -z-30
