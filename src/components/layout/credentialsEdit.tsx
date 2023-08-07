@@ -3,10 +3,10 @@
 import Button from "@/components/ui/button";
 
 import { formReg, formSchema } from "@/schemas/forms";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useUpdateUser } from "@/lib/hooks/mutate/updateProfile";
 import { useSession } from "next-auth/react";
@@ -24,11 +24,10 @@ const SignIn = () => {
   });
   const submitForm = (data: formSchema) => {
     mutate(data);
-    {
-      isSuccess && router.push("/play");
-    }
   };
-
+  useEffect(() => {
+    if (isSuccess) redirect("/play");
+  }, [isSuccess]);
   return (
     <div
       className="py-36 w-full text-clrFont items-center justify-center  absolute z-50 top-0 bg-header md:ps-4 font-lightFnt 
