@@ -1,7 +1,12 @@
+"use client";
 import React, { FC } from "react";
 import Button from "../ui/button";
 import Image from "next/image";
 import Badge from "../ui/badge";
+import { motion } from "framer-motion";
+
+import { customAnimation } from "@/lib/hooks/animation/animations";
+
 type setGame = {
   setGame: (value: boolean) => void;
   user: {
@@ -11,28 +16,56 @@ type setGame = {
   };
 };
 const PlayTemp: FC<setGame> = ({ setGame, user }) => {
+  const { HeroAnimation, sectionAnimation, section2Animation } =
+    customAnimation();
   return (
     <div className="py-44 flex px-10  lg:px-40 justify-around  items-center w-full  ">
       <div className="flex w-auto gap-12 flex-col items-start">
         <div className="flex  flex-col md:items-start items-center">
-          <h2 className="md:text-largeFnt text-[2.3rem]  font-boldFnt text-center md:text-left">
+          <motion.h2
+            initial={HeroAnimation.initial}
+            animate={HeroAnimation.inInitial}
+            transition={{ duration: 0.8 }}
+            className="md:text-largeFnt text-[2.3rem]  font-boldFnt text-center md:text-left"
+          >
             Launch a game
-          </h2>
-          <p className="text-mediumFnt md:text-mediumF text-center md:text-left">
+          </motion.h2>
+          <motion.p
+            initial={HeroAnimation.initial}
+            animate={HeroAnimation.inInitial}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-mediumFnt md:text-mediumF text-center md:text-left"
+          >
             Test your skills with a random sets <br></br> of chess puzzles
-          </p>
+          </motion.p>
         </div>
         <div className="flex gap-4 justify-center  md:justify-between  md:items-start  w-full max-w-[18rem] text-mediumFnt">
-          <div className="flex items-center gap-2">
+          <motion.div
+            initial={HeroAnimation.initial}
+            animate={HeroAnimation.inInitial}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex items-center gap-2"
+          >
             <p>{user?.badge.toLowerCase()} league</p>
             <div className=" ">
               <Badge badge={user?.badge} />
             </div>
-          </div>
+          </motion.div>
 
-          <p>elo: {user?.chessElo}</p>
+          <motion.p
+            initial={HeroAnimation.initial}
+            animate={HeroAnimation.inInitial}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            elo: {user?.chessElo}
+          </motion.p>
         </div>
-        <div className="flex w-full max-w-[18rem] justify-center md:justify-start">
+        <motion.div
+          initial={HeroAnimation.initial}
+          animate={HeroAnimation.inInitial}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex w-full max-w-[18rem] justify-center md:justify-start"
+        >
           <Button
             label="Play"
             style="Green"
@@ -41,9 +74,14 @@ const PlayTemp: FC<setGame> = ({ setGame, user }) => {
               setGame(true);
             }}
           />
-        </div>
+        </motion.div>
       </div>
-      <div className="  hidden lg:block  ">
+      <motion.div
+        initial={HeroAnimation.initial}
+        animate={HeroAnimation.inInitial}
+        transition={{ duration: 0.8 }}
+        className="  hidden lg:block  "
+      >
         <Image
           alt="dice"
           src={"/dice.svg"}
@@ -52,7 +90,7 @@ const PlayTemp: FC<setGame> = ({ setGame, user }) => {
           width={350}
           height={350}
         />{" "}
-      </div>
+      </motion.div>
     </div>
   );
 };

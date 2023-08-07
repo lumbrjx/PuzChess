@@ -1,10 +1,6 @@
 export const customAnimation = () => {
   const ButtonAnimation = {
-    initial: {
-      boxShadow: "2px 2px 100px 10px rgba(76, 76, 76, 0.60)",
-      backgroundColor: "green",
-    },
-    inInitial: { boxShadow: "0 0 0 0", backgroundColor: "#1D2A35" },
+    inInitial: { boxShadow: "0 0 0 0" },
   };
   const HeroAnimation = {
     initial: {

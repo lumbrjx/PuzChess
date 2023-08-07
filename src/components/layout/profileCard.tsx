@@ -4,12 +4,17 @@ import UserImg from "../ui/userImg";
 
 import DeleteModal from "./deleteModal";
 import Link from "next/link";
-
+import { motion } from "framer-motion";
+import { customAnimation } from "@/lib/hooks/animation/animations";
 import Badge from "../ui/badge";
 
 const ProfileCard = ({ user }: any) => {
+  const { HeroAnimation } = customAnimation();
   return (
-    <div
+    <motion.div
+      initial={HeroAnimation.initial}
+      animate={HeroAnimation.inInitial}
+      transition={{ duration: 0.2 }}
       className="text-mediumFnt bg-clrPrimaryBlack
      rounded-2xl w-full
      max-w-[36rem] shadow-cardDrop  py-12 px-4 sm:p-12"
@@ -48,7 +53,7 @@ const ProfileCard = ({ user }: any) => {
 
         <DeleteModal email={user?.email} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

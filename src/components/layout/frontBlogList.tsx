@@ -12,7 +12,7 @@ const FrontBlogsList = () => {
   const [blog, setBlog] = useState<any>([{}]);
 
   const { data, refetch, isFetching } = useInfiniteScroll(cursor);
-  const { loadingAnimation } = customAnimation();
+  const { loadingAnimation, HeroAnimation } = customAnimation();
   useEffect(() => {
     if (data) {
       setCursor(data.nextId);
@@ -42,13 +42,19 @@ const FrontBlogsList = () => {
         {blog &&
           blog.map((blog: any, index: number) =>
             hasKey(blog, "author") ? (
-              <div key={index}>
+              <motion.div
+                initial={HeroAnimation.initial}
+                animate={HeroAnimation.inInitial}
+                transition={{ duration: 0.2 }}
+                whileHover={{ scale: 0.95 }}
+                key={index}
+              >
                 <FrontBlog
                   author={blog.author}
                   title={blog.title}
                   id={blog.id}
                 />
-              </div>
+              </motion.div>
             ) : (
               ""
             )
