@@ -1,13 +1,22 @@
+"use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { customAnimation } from "@/lib/hooks/animation/animations";
 
 export default function Loading() {
+  const { loadingAnimation } = customAnimation();
   return (
     <div
-      className="py-96 w-full h-full flex-col text-clrFont text-center items-center justify-center   z-50 top-0 bg-header px-2 md:ps-4 font-boldFnt text-bigFnt md:text-largeFnt 
-    flex  
-    -8 gap-8 "
+      className="py-56  flex w-full h-full flex-col  items-center justify-center bg-header 
+"
     >
-      <Image alt="logo" src={"/Logo.svg"} width={60} height={60} priority />
+      <motion.div
+        initial={loadingAnimation.initial}
+        animate={loadingAnimation.inInitial}
+        transition={{ repeat: Infinity, duration: 0.8 }}
+      >
+        <Image alt="logo" src={"/Logo.svg"} width={60} height={60} priority />
+      </motion.div>
     </div>
   );
 }
