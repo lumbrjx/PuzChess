@@ -8,11 +8,11 @@ import { useEffect, useState } from "react";
 import { useFetchUser } from "@/lib/hooks/query/fetchUser";
 import UserImg from "../ui/userImg";
 import "../../app/globals.css";
-
+import { usePathname } from "next/navigation";
 const Navlinks = () => {
   const { data: session } = useSession();
   const user = useFetchUser(session?.user?.email);
-
+  const currentRoute = usePathname();
   const [toggle, setToggle] = useState<boolean>(false);
   useEffect(() => {
     toggle
@@ -32,7 +32,9 @@ const Navlinks = () => {
         {user?.role === "ADMIN" && (
           <Link
             href="/dashboard"
-            className=" hover:text-clrSecondaryGrey"
+            className={` hover:text-clrSecondaryGrey ${
+              currentRoute === "/dashboard" ? "text-clrLayoutGreen" : ""
+            }`}
             onClick={() => {
               setToggle(false);
             }}
@@ -43,7 +45,9 @@ const Navlinks = () => {
         {session?.user && (
           <Link
             href="/play"
-            className=" hover:text-clrSecondaryGrey   "
+            className={` hover:text-clrSecondaryGrey ${
+              currentRoute === "/play" ? "text-clrLayoutGreen" : ""
+            }`}
             onClick={() => {
               setToggle(false);
             }}
@@ -53,7 +57,9 @@ const Navlinks = () => {
         )}
         <Link
           href="/Blog"
-          className=" hover:text-clrSecondaryGrey "
+          className={` hover:text-clrSecondaryGrey ${
+            currentRoute === "/Blog" ? "text-clrLayoutGreen" : ""
+          }`}
           onClick={() => {
             setToggle(false);
           }}
@@ -67,7 +73,9 @@ const Navlinks = () => {
             onClick={() => {
               setToggle(false);
             }}
-            className="py-1.5 hover:text-clrSecondaryGrey px-7 border-2 border-clrLayoutGreen rounded-regBtn "
+            className={`py-1.5  px-7 border-2 border-clrLayoutGreen rounded-regBtn  hover:text-clrSecondaryGrey ${
+              currentRoute === "/auth/signin" ? "text-clrLayoutGreen" : ""
+            }`}
           >
             Sign in
           </Link>
@@ -75,7 +83,9 @@ const Navlinks = () => {
           <>
             <Link
               href="/leaderboard"
-              className="  hover:text-clrSecondaryGrey  "
+              className={` hover:text-clrSecondaryGrey ${
+                currentRoute === "/leaderboard" ? "text-clrLayoutGreen" : ""
+              }`}
               onClick={() => {
                 setToggle(false);
               }}

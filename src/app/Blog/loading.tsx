@@ -8,7 +8,7 @@ export default function Loading() {
   document.body.style.overflow = "hidden";
   return (
     <div
-      className="py-56  flex w-full h-full flex-col  items-center justify-center bg-header 
+      className="py-56  flex w-full h-screen flex-col  items-center justify-center bg-header 
 "
     >
       <motion.div

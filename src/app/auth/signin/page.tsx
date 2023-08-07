@@ -14,7 +14,7 @@ const SignIn = () => {
         <div className="w-full max-w-[26.5rem] flex flex-col gap-4 items-center mb-5 text-clrSecondaryGrey">
           <p className="text-center">
             For our users safety we do not provide the credentials sign in. see
-            why
+            why{" "}
             <a href="/FAQ" className="underline">
               here
             </a>
