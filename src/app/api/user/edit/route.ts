@@ -5,11 +5,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { options } from "../../auth/[...nextauth]/options";
 
 export async function PATCH(req: NextRequest) {
-  const session = await getServerSession(options);
+  // const session = await getServerSession(options);
 
-  if (!session) {
-    return NextResponse.json({ message: "unauthenticated" }, { status: 401 });
-  }
+  // if (!session) {
+  //   return NextResponse.json({ message: "unauthenticated" }, { status: 401 });
+  // }
   const email = req.nextUrl.searchParams.get("email") as string;
   const { username, chessElo } = await req.json();
   if (!username || !email || !chessElo) {
@@ -20,9 +20,11 @@ export async function PATCH(req: NextRequest) {
   }
 
   try {
+    console.log(chessElo);
     const parsed = formReg.parse({ username, chessElo });
+    console.log("parsed", typeof parsed.chessElo, parsed.username);
 
-    await prisma.user.update({
+    const user = await prisma.user.update({
       where: {
         email,
       },
@@ -30,10 +32,14 @@ export async function PATCH(req: NextRequest) {
         name: parsed.username,
         chessElo: parsed.chessElo as any, // Assign the calculated badge
       },
+      select: {
+        name: true,
+        chessElo: true,
+      },
     });
-
+    console.log("user", user);
     return NextResponse.json("updated!");
   } catch (error) {
-    return NextResponse.json("error check server");
+    return NextResponse.json({ status: 500, message: error });
   }
 }

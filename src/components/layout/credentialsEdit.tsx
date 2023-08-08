@@ -2,7 +2,7 @@
 
 import Button from "@/components/ui/button";
 
-import { formReg, formSchema } from "@/schemas/forms";
+import { formReg, form1Schema } from "@/schemas/forms";
 import { redirect, useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,16 +19,16 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<formSchema>({
+  } = useForm<form1Schema>({
     resolver: zodResolver(formReg),
   });
-  const submitForm = (data: formSchema) => {
+  const submitForm = (data: form1Schema) => {
+    console.log(data);
     mutate(data);
-    if (isSuccess){
+    if (isSuccess) {
       router.refresh();
       router.push("/");
     }
-    
   };
 
   return (
@@ -55,9 +55,9 @@ const SignIn = () => {
             className="py-3.5 px-6 bg-transparent placeholder:text-clrSecondaryGrey w-full sm:max-w-[8rem] rounded-formInput border-2
              border-clrSecondaryGrey focus:border-clrLayoutGreen 
              focus:outline-none"
-            type="text"
+            type="number"
             placeholder="Chess elo"
-            {...register("chessElo")}
+            {...register("chessElo", { valueAsNumber: true })}
           />
         </div>
         <div className="flex flex-col gap-3 items-center w-full max-w-[26.5rem] mt-3">
