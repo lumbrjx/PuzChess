@@ -24,7 +24,10 @@ export const metadata = {
     siteName: "PuzChess",
     images: [
       {
+
         url: "https://puzchess.vercel.app/opengraph-image.jpg",
+
+
         width: 1200,
         height: 600,
         alt: "logo",
