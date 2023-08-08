@@ -37,7 +37,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className=" text-mediumF font-midFnt "
             >
-              Try ChessPuzz and compete with numerous players around the world!
+              Try PuzChess and compete with numerous players around the world!
             </motion.h2>
           </div>
           <motion.div
