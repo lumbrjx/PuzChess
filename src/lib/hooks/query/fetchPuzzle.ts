@@ -12,7 +12,7 @@ export const useFetchPuzzle = () => {
         playerMoves: "4",
       },
       headers: {
-        "X-RapidAPI-Key": process.env.X_RAPIDAPI_KEY,
+        "X-RapidAPI-Key": process.env.X_RAPIDAPI_KEY as string,
         "X-RapidAPI-Host": "chess-puzzles.p.rapidapi.com",
       },
     };
