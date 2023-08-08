@@ -26,7 +26,7 @@ const SignIn = () => {
     mutate(data);
   };
   useEffect(() => {
-    if (isSuccess) redirect("/play");
+    if (isSuccess) router.push("/play");
   }, [isSuccess]);
   return (
     <div
