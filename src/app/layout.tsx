@@ -23,7 +23,7 @@ export const metadata = {
       "PuzChess is new fresh platform with friendly design and endless chesspuzzle to skyrock your chess skills and middlegame logic, we give a type of challenge to make our user experience more fun.",
     url: "https://puzchess.vercel.app",
     siteName: "PuzChess",
-
+  type: "website",
     openGraph: {
       url: "https://puzchess.vercel.app",
       type: "website",
