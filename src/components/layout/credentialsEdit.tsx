@@ -24,10 +24,9 @@ const SignIn = () => {
   });
   const submitForm = (data: formSchema) => {
     mutate(data);
-  };
-  useEffect(() => {
     if (isSuccess) router.push("/play");
-  }, [isSuccess]);
+  };
+
   return (
     <div
       className="py-36 w-full text-clrFont items-center justify-center  absolute z-50 top-0 bg-header md:ps-4 font-lightFnt 
