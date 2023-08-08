@@ -24,7 +24,7 @@ const SignIn = () => {
   });
   const submitForm = (data: formSchema) => {
     mutate(data);
-     router.push("/play");
+     redirect("/play");
     
   };
 
