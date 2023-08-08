@@ -80,7 +80,7 @@ const ChessSession: FC<setGameType> = ({ setGame, user }) => {
       <div className="w-full  max-w-[31.125rem] items-center  h-full flex flex-col justify-between gap-8">
         <div className="flex justify-between w-full px-6">
           <p className={`  ${gameStatus === "LOSE" && "text-red-400"}`}>
-            {data?.data ? data?.data : "Waiting.."}
+            {data?.data ? data?.data : ""}
             {error && "Error"}
           </p>
           <p

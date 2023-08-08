@@ -25,10 +25,9 @@ const SignIn = () => {
   const submitForm = (data: form1Schema) => {
     console.log(data);
     mutate(data);
-    if (isSuccess) {
-      router.refresh();
-      router.push("/");
-    }
+
+    router.refresh();
+    router.push("/");
   };
 
   return (
@@ -56,7 +55,7 @@ const SignIn = () => {
              border-clrSecondaryGrey focus:border-clrLayoutGreen 
              focus:outline-none"
             type="number"
-            placeholder="Chess elo"
+            placeholder="Rating"
             {...register("chessElo", { valueAsNumber: true })}
           />
         </div>
@@ -67,7 +66,7 @@ const SignIn = () => {
           {errors.chessElo && (
             <span className="text-red-400">{errors.chessElo.message}</span>
           )}
-          <p>double click to continue</p>
+
           <Button
             label=" Continue"
             style="Grey"

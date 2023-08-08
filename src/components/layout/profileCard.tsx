@@ -16,8 +16,8 @@ const ProfileCard = ({ user }: any) => {
       animate={HeroAnimation.inInitial}
       transition={{ duration: 0.2 }}
       className="text-mediumFnt bg-clrPrimaryBlack
-     rounded-2xl w-full
-     max-w-[36rem] shadow-cardDrop  py-12 px-4 sm:p-12"
+     rounded-2xl w-full  border border-1  border-clrSecondaryGrey
+     max-w-[36rem]   py-12 px-4 sm:p-12"
     >
       <div className="flex justify-between w-full mb-10">
         <div className="flex gap-4 items-center">
@@ -37,7 +37,7 @@ const ProfileCard = ({ user }: any) => {
       </div>
       <div className="mb-10">
         <p className="text-clrSecondaryGrey">Email: {user?.email}</p>
-        <p>Elo : {user?.chessElo}</p>
+        <p>Chess rating : {user?.chessElo}</p>
         <p className="text-clrSecondaryGrey">Rank: {user?.score}</p>
       </div>
       <div
@@ -46,7 +46,7 @@ const ProfileCard = ({ user }: any) => {
       >
         <Link
           href={"/profile/edit"}
-          className="w-full max-w-[9rem] text-black bg-clrLayoutGreen shadow-btnDrop flex items-center gap-2 justify-center flex-wrap text-mediumFnt font-midFnt  py-1.5 px-5 rounded-regBtn"
+          className="w-full max-w-[9rem] text-black bg-clrLayoutGreen   flex items-center gap-2 justify-center flex-wrap text-mediumFnt font-midFnt  py-1.5 px-5 rounded-regBtn"
         >
           Edit profile
         </Link>
