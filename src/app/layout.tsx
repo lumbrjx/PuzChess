@@ -16,6 +16,7 @@ export const metadata = {
   authors: [{ name: "Tayeb" }],
   creator: "Tayeb aka CLOG",
   publisher: "Tayeb aka CLOG",
+
   openGraph: {
     title: "PuzChess",
     description:
@@ -31,6 +32,7 @@ export const metadata = {
         "PuzChess is new fresh platform with friendly design and endless chesspuzzle to skyrock your chess skills and middlegame logic, we give a type of challenge to make our user experience more fun.",
     },
   },
+
 };
 
 export default function RootLayout({
