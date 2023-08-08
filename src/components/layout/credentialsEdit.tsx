@@ -67,6 +67,7 @@ const SignIn = () => {
           {errors.chessElo && (
             <span className="text-red-400">{errors.chessElo.message}</span>
           )}
+          <p>double click to continue</p>
           <Button
             label=" Continue"
             style="Grey"
