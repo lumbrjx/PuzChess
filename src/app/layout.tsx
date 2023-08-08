@@ -22,26 +22,15 @@ export const metadata = {
       "PuzChess is new fresh platform with friendly design and endless chesspuzzle to skyrock your chess skills and middlegame logic, we give a type of challenge to make our user experience more fun.",
     url: "https://puzchess.vercel.app",
     siteName: "PuzChess",
-    images: [
-      {
 
-        url: "https://puzchess.vercel.app/opengraph-image.jpg",
-
-
-        width: 1200,
-        height: 600,
-        alt: "logo",
-      },
-    ],
-  },
-  images: [
-    {
-      url: "https://puzchess.vercel.app/opengraph-image.jpg",
-      width: 1200,
-      height: 600,
-      alt: "logo",
+    openGraph: {
+      url: "https://puzchess.vercel.app",
+      type: "website",
+      title: "PuzChess",
+      description:
+        "PuzChess is new fresh platform with friendly design and endless chesspuzzle to skyrock your chess skills and middlegame logic, we give a type of challenge to make our user experience more fun.",
     },
-  ],
+  },
 };
 
 export default function RootLayout({
