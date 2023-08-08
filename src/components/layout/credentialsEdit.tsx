@@ -25,7 +25,7 @@ const SignIn = () => {
   const submitForm = (data: formSchema) => {
     mutate(data);
     if (isSuccess){
-      redirect("/")
+      router.push("/")
     }
     
   };
