@@ -24,9 +24,8 @@ const SignIn = () => {
   });
   const submitForm = (data: formSchema) => {
     mutate(data);
-    {
-      isSuccess && router.push("/play");
-    }
+     router.push("/play");
+    
   };
 
   return (
