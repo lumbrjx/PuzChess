@@ -65,7 +65,7 @@ function UserCard({ user }: { user: any }) {
       <div className="mb-10">
         <p>Elo : {user?.chessElo}</p>
         <div className="flex gap-2 items center">
-          <p>Rank : {user?.chessElo}</p>
+          <p>Rank : {user?.score}</p>
           <Badge badge={user?.badge} />
         </div>
       </div>

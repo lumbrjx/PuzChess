@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Button from "../ui/button";
 import { useRemUser } from "@/lib/hooks/mutate/deleteUser";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const DeleteModal = ({ email }: { email: string }) => {
   const [show, setShow] = useState(false);
@@ -31,7 +31,7 @@ const DeleteModal = ({ email }: { email: string }) => {
               additional="text-smallFnt rounded-regBtn"
               onClick={() => {
                 mutate({ email: email });
-                router.refresh();
+                redirect("/");
               }}
             />
             <Button
