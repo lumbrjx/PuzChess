@@ -6,24 +6,18 @@ const FAQ = () => {
       <h2 className="text-largeFnt">Frequently Asked Questions</h2>
 
       <div className="flex flex-col gap-3">
-        <h2 className="text-bigFnt">What is PuzChess?</h2>
+        <h2 className="text-bigFnt">Is PuzChess free?</h2>
         <p className="mb-8">
-          PuzChess is a new fresh platform with friendly design and endless
-          chess puzzles to skyrocket your chess skills and middlegame logic.
+          Yes for now you can enjoy our platform for free, but in the next
+          upadtes you will have to pay to access more awesome features.
         </p>
 
         <h2 className="text-bigFnt">
           What type of challenge does PuzChess offer?
         </h2>
         <p className="mb-8">
-          PuzChess offers a variety of challenges to make the user experience
-          more fun and engaging.
-        </p>
-
-        <h2 className="text-bigFnt">Is PuzChess free?</h2>
-        <p className="mb-8">
-          Yes, PuzChess is completely free to use. Enjoy unlimited chess puzzles
-          without any cost.
+          Basically, we think that solving a chess puzzle is more fun than a
+          normal PvP game, However we will add the normal games soon.
         </p>
 
         <h2 className="text-bigFnt">
@@ -35,9 +29,10 @@ const FAQ = () => {
           your level.
         </p>
 
-        <h2 className="text-bigFnt">Where can I find more information?</h2>
+        <h2 className="text-bigFnt">What will be added in the next updates?</h2>
         <p className="mb-8">
-          You can check out our blogs - CLOG for more information and updates.
+          We will focus to migrate our puzzles api to an independent state, PvP
+          and friends Chats!
         </p>
       </div>
     </div>
