@@ -1,7 +1,11 @@
 import { ZodType, z } from "zod";
 export type formSchema = {
   username?: string;
-  chessElo?: string;
+  chessElo?: number;
+};
+export type form1Schema = {
+  username?: string;
+  chessElo?: number | null | undefined;
 };
 export type blogSchema = {
   author: string;
@@ -17,7 +21,7 @@ export const form: ZodType<formSchema> = z.object({
     .toLowerCase()
     .regex(/^[a-zA-Z0-9]+$/),
 });
-export const formReg: ZodType<formSchema> = z.object({
+export const formReg: ZodType<form1Schema> = z.object({
   username: z
     .string()
     .min(5, "username must contain at least 5 characters")
@@ -25,7 +29,12 @@ export const formReg: ZodType<formSchema> = z.object({
     .nonempty()
     .toLowerCase()
     .regex(/^[a-zA-Z0-9]+$/),
-  chessElo: z.string().max(4).nonempty("chess elo shouldn't be empty"),
+  chessElo: z
+    .number()
+    .min(100, "chess elo can't be under 100")
+    .max(3200, "chess elo can't be more than 3200")
+    .nonnegative("can't be negative")
+    .nullish(),
 });
 export const blogForm: ZodType<blogSchema> = z.object({
   author: z.string().nonempty("author can't be empty").toLowerCase(),

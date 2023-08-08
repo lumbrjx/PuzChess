@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 export const useAddFriend = (email: string | null | undefined) => {
   async function mutateFriend(info: object) {
     const mutate = await axios.patch(
-      `https://puzchess.vercel.app/api/friend?email=${email}`,
+      `http://localhost:3000/api/friend?email=${email}`,
       //the score and state object
       info
     );

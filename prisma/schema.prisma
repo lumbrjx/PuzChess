@@ -54,12 +54,12 @@ model User {
   id            String    @id @default(cuid())
   role          roles     @default(BASIC)
   name          String    @unique
-  chessElo      String?   @default("600")
+  chessElo      Int?      @default(600)
   badge         budges    @default(ROCKIE)
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  score         Int       @default(600)
+  score         Int       @default(200)
   followedBy    User[]    @relation("friends")
   following     User[]    @relation("friends")
   accounts      Account[]

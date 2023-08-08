@@ -16,7 +16,7 @@ async function User({ params }: { params: { user: string } }) {
   }
 
   return (
-    <div className="pt-[10rem] w-full flex justify-center  pb-[12rem] md:px-24  ">
+    <div className="pt-[14rem] w-full flex justify-center  pb-[12rem] md:px-24  ">
       <UserCard user={thePlayer} />
     </div>
   );
