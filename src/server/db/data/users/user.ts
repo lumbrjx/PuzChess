@@ -54,6 +54,7 @@ export const showUser = async (name: string, email: any) => {
       badge: true,
       chessElo: true,
       image: true,
+      score:true,
       followedBy: { where: { email: email }, select: { name: true } },
     },
   });
