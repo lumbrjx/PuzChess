@@ -12,7 +12,10 @@ export const useFetchPuzzle = () => {
         playerMoves: "4",
       },
       headers: {
+
+
         "X-RapidAPI-Key":'3b38294e82msh042338a6ea5f1a8p1a8714jsnec1c2a1dac8f',
+
         "X-RapidAPI-Host": "chess-puzzles.p.rapidapi.com",
       },
     };
