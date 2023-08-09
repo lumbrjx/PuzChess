@@ -44,7 +44,7 @@ export async function PATCH(req: NextRequest) {
       score += 0;
     }
     if (score > 40) {
-      score -= 20;
+      score -= 3;
     }
   }
   const badge = calculateBadge(score); // Calculate the badge based on the score
