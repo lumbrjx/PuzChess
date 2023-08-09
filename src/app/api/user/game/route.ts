@@ -31,13 +31,22 @@ export async function PATCH(req: NextRequest) {
 
   let { score, state } = await req.json();
 
-  console.log(await score);
+  
+  //if (state === "WIN") {
+  //  score += 20;
+  //} else if (state === "LOSE") {
+  //  score -= 20;
+ // }
   if (state === "WIN") {
     score += 20;
   } else if (state === "LOSE") {
-    score -= 20;
+    if (score <= 20) {
+      score += 0;
+    }
+    if (score > 40) {
+      score -= 20;
+    }
   }
-
   const badge = calculateBadge(score); // Calculate the badge based on the score
 
   try {
